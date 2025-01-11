@@ -20,21 +20,16 @@ function Home() {
               <img src={Logo} alt="CIS Logo" className="w-40 h-40" />
             </div>
             <h1 className="text-4xl font-bold text-white text-center font-custom2">
-              Welcome to Campus Insights System
+              Campus Insights System
             </h1>
 
-            <p className="mt-8 text-white text-justify">
-              Welcome to the Campus Insights System, a smart platform designed
-              to enhance communication and engagement within your campus. This
-              system allows students to share feedback and provide valuable
-              insights about campus facilities, activities, and teaching
-              experiences. With features like event updates, real-time
-              notifications, and feedback collection, the Campus Insights System
-              ensures that students, teachers, and administrators stay informed
-              and connected. Our goal is to create a more responsive and
-              interactive campus environment for everyone.
-              <Button />
+            <p className="mt-4 mb-3 text-white text-justify">
+              Share anonymous feedback and provide valuable insights about campus facilities, activities, and teaching experiences.
             </p>
+            <Button 
+            address={"/login"}
+            text={"Get Started"}
+            />
           </div>
         </header>
       </div>
