@@ -1,20 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Button() {
-  const navigate = useNavigate();
-  const handleButtonClick = () => {
-    navigate("/login");
-  };
+function Button({ address, children }) {
   return (
-    <div className="flex justify-start">
-      <button
-        onClick={handleButtonClick}
-        className="px-6 py-3 mt-3 font-custom2 font-semibold bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition duration-300"
-      >
-        Get Start
-      </button>
-    </div>
+    <Link
+      to={address}
+      className="btn bg-teal-600 hover:bg-teal-700 text-white border-0"
+    >
+      {children ? children : "Button"}
+    </Link>
   );
 }
 
