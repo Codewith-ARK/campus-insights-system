@@ -9,7 +9,7 @@ import Logo from "../assets/Logo/CIS logo1.png";
 function Home() {
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar />
       <div
         className="min-h-screen h-96 flex bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${BackgroundImage})` }}

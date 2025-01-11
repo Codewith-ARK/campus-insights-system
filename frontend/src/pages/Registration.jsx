@@ -1,9 +1,14 @@
 import React from "react";
 import Image from "../assets/Images/v.webp";
 import Button3 from "../components/Button3";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
 function Register() {
   return (
+    <>
+      <Navbar />
     <div>
       <div className="min-h-screen flex items-center justify-center bg-cyan-500 p-4">
         <div className="w-full max-w-3xl bg-gray-600 shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
@@ -97,7 +102,8 @@ function Register() {
           </div>
         </div>
       </div>
-    </div>
+    </>
+
   );
 }
 

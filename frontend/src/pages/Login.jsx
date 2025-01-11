@@ -1,10 +1,13 @@
 import React from "react";
 import Logo from "../assets/Logo/CIS logo2.jpg";
 import Image from "../assets/Images/Teachers.png";
-import Button1 from "../components/Button1";
+import Button from "../components/Button";
+import Navbar from "../components/Navbar";
 
 function Login() {
   return (
+    <>
+      <Navbar />
     <div className="min-h-screen flex items-center justify-center bg-cyan-500 p-4">
       <div className="flex flex-col md:flex-row w-full max-w-4xl shadow-lg rounded-lg overflow-hidden">
         {/* Left Image Section */}
@@ -76,6 +79,7 @@ function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
