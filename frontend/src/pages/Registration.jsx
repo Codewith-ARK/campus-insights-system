@@ -1,8 +1,6 @@
 import React from "react";
-import Image from "../assets/Images/v.webp";
-import Button3 from "../components/Button3";
-import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import Button from "../components/Button";
 
 function Register() {
@@ -15,7 +13,7 @@ function Register() {
             {/* Left Image Section */}
             <div className="hidden md:flex md:w-1/2">
               <img
-                src={Image}
+                src={"/images/v.webp"}
                 alt="Registration Illustration"
                 className="object-cover w-full h-full"
               />
@@ -89,13 +87,12 @@ function Register() {
                   />
                 </div>
                 <div className="*:w-full">
-    <Button address={"/register"}>Register</Button>
-
+                  <Button address={"/register"}>Register</Button>
                 </div>
               </form>
-              <div className="text-cyan-500 text-sm flex gap-2 justify-center items-center mt-4">
+              <div className="text-cyan-500 text-sm flex gap-1 justify-center items-center mt-4">
                 <p className="text-center text-sm">Already have an account?</p>
-                <Link className="link" to={"/login"}>Login</Link>
+                <Link className="link link-hover font-semibold" to={"/login"}>Login</Link>
               </div>
             </div>
           </div>

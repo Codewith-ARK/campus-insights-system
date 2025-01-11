@@ -14,7 +14,7 @@ function Navbar() {
             <div className="flex items-center">
               <img src={Logo} alt="CIS Logo" className="w-12 h-12 mr-4" />
               <div className="text-white font-bold text-2xl">
-                <h1 className="text-base uppercase font-medium">Campus Insights System</h1>
+                <h1 className="text-base lg:text-2xl uppercase font-medium lg:font-bold">Campus Insights System</h1>
               </div>
             </div>
           </Link>

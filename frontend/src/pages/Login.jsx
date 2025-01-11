@@ -3,6 +3,7 @@ import Logo from "../assets/Logo/CIS logo2.jpg";
 import Image from "../assets/Images/Teachers.png";
 import Button from "../components/Button";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -64,20 +65,15 @@ function Login() {
                   />
                 </div>
                 <div className="mt-3 *:w-full">
-                <Button address={"/login"}>Login</Button>
+                  <Button address={"/login"}>Login</Button>
                 </div>
               </div>
             </form>
 
-            <p className="mt-4 text-center text-sm text-teal-400">
-              Not a member?{" "}
-              <a
-                href="/register"
-                className="font-medium text-teal-400 hover:text-teal-600"
-              >
-                Register
-              </a>
-            </p>
+            <div className="text-teal-400 text-sm flex gap-1 justify-center items-center mt-4">
+              <p className="text-center text-sm">Already have an account?</p>
+              <Link className="link link-hover font-semibold" to={"/register"}>Register</Link>
+            </div>
           </div>
         </div>
       </div>

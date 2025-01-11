@@ -26,10 +26,7 @@ function Home() {
             <p className="mt-4 mb-3 text-white text-justify">
               Share anonymous feedback and provide valuable insights about campus facilities, activities, and teaching experiences.
             </p>
-            <Button 
-            address={"/login"}
-            text={"Get Started"}
-            />
+            <Button address={"/login"}>Get Started</Button>
           </div>
         </header>
       </div>
