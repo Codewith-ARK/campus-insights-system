@@ -2101,6 +2101,10 @@ html {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -2109,9 +2113,17 @@ html {
     padding-left: 5rem;
     padding-right: 5rem;
   }
+
+  .md\:first\:col-span-2:first-child {
+    grid-column: span 2 / span 2;
+  }
 }
 
 @media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .lg\:flex-row {
     flex-direction: row;
   }
@@ -2142,5 +2154,9 @@ html {
 
   .lg\:font-bold {
     font-weight: 700;
+  }
+
+  .lg\:first\:col-span-3:first-child {
+    grid-column: span 3 / span 3;
   }
 }

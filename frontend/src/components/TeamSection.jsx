@@ -34,7 +34,7 @@ export default function TeamSection() {
         <h2 className="text-3xl font-bold text-cyan-200 mb-8 mt-8 font-custom2">
           Meet Our Team
         </h2>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {TeamData.map((item, index) => (
             <TeamCard
               name={item.name}
@@ -53,7 +53,7 @@ export default function TeamSection() {
 function TeamCard({ name, role, imgUrl, desc }) {
   return (
     <>
-      <div className="first:col-span-3 flex flex-col gap-3 bg-cyan-900 text-white p-6 transform hover:scale-105 hover:shadow-xl transition duration-300 rounded-md cursor-pointer">
+      <div className="md:first:col-span-2 lg:first:col-span-3 flex flex-col gap-3 bg-cyan-900 text-white p-6 transform hover:scale-105 hover:shadow-xl transition duration-300 rounded-md cursor-pointer">
         <img
           className="w-40 aspect-square rounded-md mx-auto object-cover"
           src={imgUrl}
