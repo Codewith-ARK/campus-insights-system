@@ -1,84 +1,109 @@
-import React from "react";
-import Logo from "../assets/Logo/CIS logo2.jpg";
-import Image from "../assets/Images/Teachers.png";
-import Button from "../components/Button";
-import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-function Login() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email === "" || password === "") {
+      setErrorMessage("Please fill in all fields");
+    } else {
+      setErrorMessage("");
+      // Handle successful login logic here
+      alert("Login Successful!");
+    }
+  };
+
   return (
-    <>
-      <Navbar />
-      <div className="min-h-screen flex items-center justify-center bg-cyan-500 p-4">
-        <div className="flex flex-col md:flex-row w-full max-w-4xl shadow-lg rounded-lg overflow-hidden">
-          {/* Left Image Section */}
-          <div className="hidden md:flex md:w-1/2 bg-cyan-700">
-            <img
-              src={Image}
-              alt="Login Illustration"
-              className="object-cover w-full h-full"
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-emerald-800 to-sky-800 bg-opacity-70 backdrop-blur-sm">
+      {/* 3D floating shapes */}
+      <div className="absolute top-0 left-0 right-0 bottom-0 z-10 flex justify-center items-center space-x-4 opacity-20">
+        <div className="w-48 h-48 bg-cyan-500 rounded-full "></div>
+        <div className="w-64 h-64 bg-teal-500 rounded-full "></div>
+      
+      </div>
+
+      {/* Login Box */}
+      <div className="relative z-20 bg-white bg-opacity-30 backdrop-blur-lg p-8 rounded-lg shadow-2xl w-96">
+       
+        {/* Logo Image */}
+        <div className="flex justify-center mb-4">
+          <img
+            src="/public/Images/Campus-insight-system logo1-01.png" // Replace with your logo path
+            alt="Logo"
+            className="h-24 w-auto bg-white rounded-full"
+          />
+        </div>
+
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
+          Login
+        </h2>
+
+        {errorMessage && (
+          <p className="text-red-500 text-center mb-4">{errorMessage}</p>
+        )}
+
+        <form onSubmit={handleSubmit}>
+          {/* Email Input */}
+          <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="block text-white font-semibold mb-2"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-3 bg-transparent border-2 border-white rounded-lg text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              placeholder="Enter your email"
             />
           </div>
 
-          {/* Right Content Section */}
-          <div className="flex flex-col justify-center w-full md:w-1/2 p-6 bg-gray-700">
-            <div className="mx-auto w-full max-w-md">
-              <img
-                src={Logo}
-                alt="Company Logo"
-                className="mx-auto h-20 w-auto rounded-full"
-              />
-              <h1 className="mt-6 text-center text-3xl font-bold text-cyan-400">
-                Campus Insights System
-              </h1>
-              <p className="mt-2 text-center text-sm text-cyan-400">
-                Sign in to your account
-              </p>
-            </div>
-
-            <form className="mt-8 space-y-6">
-              <div className="rounded-md shadow-sm">
-                <div>
-                  <label htmlFor="email" className="sr-only">
-                    Email address
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    className="appearance-none rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                    placeholder="Email"
-                  />
-                </div>
-                <div className="mt-2">
-                  <label htmlFor="password" className="sr-only">
-                    Password
-                  </label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    className="appearance-none rounded-b-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                    placeholder="Password"
-                  />
-                </div>
-                <div className="mt-3 *:w-full">
-                  <Button address={"/login"}>Login</Button>
-                </div>
-              </div>
-            </form>
-
-            <div className="text-teal-400 text-sm flex gap-1 justify-center items-center mt-4">
-              <p className="text-center text-sm">Already have an account?</p>
-              <Link className="link link-hover font-semibold" to={"/register"}>Register</Link>
-            </div>
+          {/* Password Input */}
+          <div className="mb-6">
+            <label
+              htmlFor="password"
+              className="block text-white font-semibold mb-2"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-3 bg-transparent border-2 border-white rounded-lg text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              placeholder="Enter your password"
+            />
           </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full p-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-cyan-600 transition-all"
+          >
+            Login
+          </button>
+        </form>
+
+        {/* Register Link */}
+        <div className="text-center mt-4">
+          <p className="text-white">
+            Don't have an account?{" "}
+            <a href="/register" className="text-blue-400 hover:underline">
+              Register here
+            </a>
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default Login;
