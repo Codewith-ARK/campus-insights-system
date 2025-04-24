@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const [errorMessage, setErrorMessage] = useState("");
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +19,7 @@ const Register = () => {
     } else {
       setErrorMessage("");
       alert("Registration Successful!");
-      // Handle registration logic here
+      navigate("/login"); // ✅ redirect to Home page
     }
   };
 
@@ -92,160 +96,18 @@ const Register = () => {
           </button>
         </form>
 
-        {/* Link to Login */}
-        {/* <div className="text-center mt-5">
+        
+        <div className="text-center mt-4">
           <p className="text-white">
-            Already have an account?{" "}
-            <Link to="/" className="text-blue-300 hover:underline">
-              Login here
+          Already have an account?{" "}
+            <Link to="/login" className="text-blue-500 underline">
+              Login
             </Link>
           </p>
-        </div> */}
+        </div>
       </div>
     </div>
   );
 };
 
 export default Register;
-
-// const Register = () => {
-//   const [username, setUsername] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-//   const [errorMessage, setErrorMessage] = useState("");
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (
-//       username === "" ||
-//       email === "" ||
-//       password === "" ||
-//       confirmPassword === ""
-//     ) {
-//       setErrorMessage("Please fill in all fields");
-//     } else if (password !== confirmPassword) {
-//       setErrorMessage("Passwords do not match");
-//     } else {
-//       setErrorMessage("");
-//       // Handle successful registration logic here
-//       alert("Registration Successful!");
-//     }
-//   };
-
-//   return (
-//     <div className="relative bg-gradient-to-r from-emerald-800  to-sky-800  min-h-screen flex justify-center items-center overflow-hidden">
-//       {/* 3D Floating Shapes */}
-//       <div className="absolute top-10 left-60 w-32 h-32 bg-cyan-400 rounded-full  opacity-20"></div>
-//       <div className="absolute top-20 left-80 w-32 h-32 bg-cyan-400 rounded-full  opacity-20"></div>
-//       <div className="absolute top-10 left-60 w-32 h-32 bg-cyan-400 rounded-full  opacity-20"></div>
-//       <div className="absolute bottom-10 right-10 w-48 h-48 bg-teal-400 rounded-full  opacity-30"></div>
-
-//       {/* Form Box */}
-//       <div className="relative z-20 bg-transparent p-8 rounded-2xl shadow-2xl max-w-md w-full">
-//         <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
-//           Create an Account
-//         </h2>
-
-//         {/* Error Message */}
-//         {errorMessage && (
-//           <p className="text-red-500 text-center mb-4">{errorMessage}</p>
-//         )}
-
-//         <form onSubmit={handleSubmit}>
-//           {/* Username */}
-//           <div className="mb-4">
-//             <label
-//               htmlFor="username"
-//               className="block text-gray-600 font-semibold mb-2"
-//             >
-//               Username
-//             </label>
-//             <input
-//               type="text"
-//               id="username"
-//               name="username"
-//               value={username}
-//               onChange={(e) => setUsername(e.target.value)}
-//               className="w-full p-4 bg-gray-100 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-//               placeholder="Enter your username"
-//             />
-//           </div>
-
-//           {/* Email */}
-//           <div className="mb-4">
-//             <label
-//               htmlFor="email"
-//               className="block text-gray-600 font-semibold mb-2"
-//             >
-//               Email
-//             </label>
-//             <input
-//               type="email"
-//               id="email"
-//               name="email"
-//               value={email}
-//               onChange={(e) => setEmail(e.target.value)}
-//               className="w-full p-4 bg-gray-100 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-//               placeholder="Enter your email"
-//             />
-//           </div>
-
-//           {/* Password */}
-//           <div className="mb-4">
-//             <label
-//               htmlFor="password"
-//               className="block text-gray-600 font-semibold mb-2"
-//             >
-//               Password
-//             </label>
-//             <input
-//               type="password"
-//               id="password"
-//               name="password"
-//               value={password}
-//               onChange={(e) => setPassword(e.target.value)}
-//               className="w-full p-4 bg-gray-100 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-//               placeholder="Create a password"
-//             />
-//           </div>
-
-//           {/* Confirm Password */}
-//           <div className="mb-6">
-//             <label
-//               htmlFor="confirmPassword"
-//               className="block text-gray-600 font-semibold mb-2"
-//             >
-//               Confirm Password
-//             </label>
-//             <input
-//               type="password"
-//               id="confirmPassword"
-//               name="confirmPassword"
-//               value={confirmPassword}
-//               onChange={(e) => setConfirmPassword(e.target.value)}
-//               className="w-full p-4 bg-gray-100 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-//               placeholder="Confirm your password"
-//             />
-//           </div>
-
-//           {/* Submit Button */}
-//           <button
-//             type="submit"
-//             className="w-full p-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-all"
-//           >
-//             Register
-//           </button>
-//         </form>
-
-//         {/* Login Link */}
-//         <div className="text-center mt-4">
-//           <p className="text-gray-600">
-//             Already have an account?{" "}
-//             <a href="/login" className="text-blue-500 hover:underline">
-//               Login here
-//             </a>
-//           </p>
-//         </div>
-//       </div>
-//     </div>

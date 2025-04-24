@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -42,36 +43,36 @@ function Footer() {
             <h3 className="text-xl font-semibold mb-4 right-10">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="#about"
-                  className="hover:text-cyan-700 transition duration-300"
-                >
-                  About Us
-                </a>
+              <Link
+      to="/"
+      className="hover:text-cyan-700 transition duration-300"
+    >
+      Home
+    </Link>
               </li>
               <li>
-                <a
-                  href="#services"
-                  className="hover:text-cyan-700 transition duration-300"
-                >
-                  Services
-                </a>
+              <Link
+      to="/feedback"
+      className="hover:text-cyan-700 transition duration-300"
+    >
+      Feedback
+    </Link>
               </li>
               <li>
-                <a
-                  href="#events"
-                  className="hover:text-cyan-700 transition duration-300"
-                >
-                  Events
-                </a>
+              <Link
+      to="/about"
+      className="hover:text-cyan-700 transition duration-300"
+    >
+      About Us
+    </Link>
               </li>
               <li>
-                <a
-                  href="#contact"
-                  className="hover:text-cyan-700 transition duration-300"
-                >
-                  Contact
-                </a>
+              <Link
+      to="/contact"
+      className="hover:text-cyan-700 transition duration-300"
+    >
+      Contact
+    </Link>
               </li>
             </ul>
           </div>
@@ -86,14 +87,7 @@ function Footer() {
             &copy; {new Date().getFullYear()} Campus Insights. All rights
             reserved.
           </p>
-          <div className="mt-4 flex justify-center space-x-6">
-            <a href="#" className="hover:text-cyan-700 transition duration-300">
-              Terms of Service
-            </a>
-            <a href="#" className="hover:text-cyan-700 transition duration-300">
-              Privacy Policy
-            </a>
-          </div>
+         
         </div>
       </div>
     </footer>

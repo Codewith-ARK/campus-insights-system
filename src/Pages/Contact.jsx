@@ -1,10 +1,13 @@
 import React from "react";
-
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 function Contact() {
   return (
-    <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen text-white relative overflow-hidden">
+    
+    <div className="bg-gradient-to-t from-emerald-700 to-sky-950 min-h-screen text-white relative overflow-hidden">
+     <Navbar></Navbar>
       {/* Background 3D Shapes */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-full animate-spin-slow blur-xl"></div>
+  
       <div className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-bl from-pink-500 to-yellow-400 rounded-full animate-pulse blur-xl"></div>
       <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 -translate-x-1/2 w-96 h-96 border-8 border-dashed border-gray-400/30 rounded-full animate-float"></div>
 
@@ -20,7 +23,7 @@ function Contact() {
       <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-gradient-to-b from-gray-800 to-gray-700 p-8 rounded-2xl shadow-lg">
+          <div className=" bg-transparent p-8 rounded-2xl shadow-2xl">
             <h2 className="text-3xl font-bold mb-6">Send Us a Message</h2>
             <form className="space-y-6">
               <div>
@@ -30,7 +33,7 @@ function Contact() {
                 <input
                   type="text"
                   id="name"
-                  placeholder="John Doe"
+                  placeholder="Enter Your Name"
                   className="w-full mt-2 p-3 bg-gray-800 rounded-lg border border-gray-600 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -58,7 +61,7 @@ function Contact() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300"
+                className="w-full bg-emerald-700 hover:bg-gradient-to-r from-green-400 to-teal-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300"
               >
                 Send Message
               </button>
@@ -91,7 +94,7 @@ function Contact() {
                   <i className="fas fa-map-marker-alt text-white"></i>
                 </div>
                 <p className="ml-4 text-gray-300">
-                  123 Main Street, City, State
+                Sufi University Bhitshah
                 </p>
               </div>
             </div>
@@ -99,7 +102,7 @@ function Contact() {
             {/* Embedded Map */}
             <div className="h-64 bg-gray-800 rounded-lg overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.835434509618!2d144.9630577153168!3d-37.81362797975159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43e2d62d33%3A0x3d0000!2s123%20Main%20St%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2sus!4v1632571911554!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.1130084445635!2d68.48853347523217!3d25.799845577327957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x394b949d6ff15555%3A0xdec4b047ac875ba6!2sSufi%20University%20Bhitshah!5e0!3m2!1sen!2sus!4v1745474368835!5m2!1sen!2sus"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -111,6 +114,7 @@ function Contact() {
           </div>
         </div>
       </section>
+      <Footer></Footer>
     </div>
   );
 }

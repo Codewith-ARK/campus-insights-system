@@ -7,6 +7,8 @@ import 'font-awesome/css/font-awesome.min.css';
 import Icon1 from "../assets/Icons/analytics.gif"
 import Icon2 from "../assets/Icons/contract.gif"
 import Icon3 from "../assets/Icons/update.gif"
+import { Link, useNavigate } from "react-router-dom";
+
 function Home() {
   // Initialize AOS on component mount
   useEffect(() => {
@@ -17,6 +19,10 @@ function Home() {
       offset: 100, // Triggers animation when the element is 100px from the viewport
     });
   }, []);
+
+
+    
+      const navigate = useNavigate();
 
   return (
     <div className="bg-gray-900">
@@ -47,13 +53,17 @@ function Home() {
           
 
           <div className="flex justify-center items-center gap-6">
+
+       
   <button
     className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg shadow-xl transform hover:scale-110 transition-all duration-300 hover:bg-gradient-to-r from-green-400 to-teal-500"
     data-aos="fade-right"
-    data-aos-delay="600"
+    data-aos-delay="600" onClick={() => navigate('/login')}
   >
+
     Get Started
   </button>
+
 </div>
           <div className="absolute top-1/4 right-32 w-64 h-64 bg-gradient-to-br from-cyan-400 to-cyan-600 opacity-20 rounded-full  transform translate-x-[-50%] translate-y-[-50%]"></div>
           <div className="absolute top-1/3 right-full w-96 h-96 bg-gradient-to-br from-cyan-500 to-teal-500 opacity-30 rounded-full  transform translate-x-[50%] translate-y-[-50%]"></div>

@@ -1,171 +1,151 @@
 import React from "react";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 function About() {
   const teamMembers = [
     {
-      name: "John Doe",
-      role: "Full-Stack Developer",
-      description:
-        "Specializing in scalable solutions for modern applications.",
-      img: Image1,
+      name: "Abdul Rehman Khan",
+      role: "Team Leader",
+      description: "Specializing in scalable solutions for modern applications.",
+      img: "/Images/Abdul Rehman img.png",
     },
     {
-      name: "Jane Smith",
+      name: "Muhammad Moosa Nizamani",
       role: "UI/UX Designer",
       description: "Creating seamless and engaging user experiences.",
-      //   img: JaneImage,
+      img: "/public/Images/img.png",
     },
     {
-      name: "Emily Carter",
+      name: "Zaheer Ahmed",
       role: "Project Manager",
       description: "Ensuring project timelines and deliverables are met.",
-      //   img: EmilyImage,
+      img: "/Images/zaheer.png",
     },
   ];
+
   return (
-    // <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen text-white relative overflow-hidden">
-    //   {/* 3D Shapes */}
-    //   <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-full animate-spin-slow blur-xl"></div>
-    //   <div className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-bl from-pink-500 to-yellow-400 rounded-full animate-pulse blur-xl"></div>
-    //   <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 -translate-x-1/2 w-96 h-96 border-8 border-dashed border-gray-400/30 rounded-full animate-float"></div>
+    <div className="bg-gradient-to-t from-emerald-700 to-sky-950 min-h-screen text-white relative overflow-hidden">
+      <Navbar />
 
-    //   {/* Hero Section */}
-    //   <header className="text-center py-16 relative z-10">
-    //     <h1 className="text-5xl font-extrabold mb-6">About Us</h1>
-    //     <p className="text-xl text-gray-300">
-    //       Pioneering creativity and innovation in web development and design.
-    //     </p>
-    //   </header>
+      {/* Decorative Background Shapes */}
+      <div className="absolute top-14 left-10 w-32 h-32 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-full animate-spin-slow blur-xl"></div>
+      <div className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-bl from-pink-500 to-yellow-400 rounded-full animate-pulse blur-xl"></div>
+      <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 -translate-x-1/2 w-96 h-96 border-8 border-dashed border-gray-400/30 rounded-full animate-float"></div>
 
-    //   {/* Team Section */}
-    //   <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    //     <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
-    //     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    //       {/* Team Member Card */}
-    //       <div className="bg-gradient-to-r from-gray-800 to-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2">
-    //         <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full animate-spin-slow"></div>
-    //         <h3 className="text-xl font-semibold text-center">John Doe</h3>
-    //         <p className="text-center text-gray-400">Full-Stack Developer</p>
-    //         <p className="text-gray-500 text-sm mt-2 text-center">
-    //           Building scalable and efficient solutions for modern problems.
-    //         </p>
-    //       </div>
-
-    //       <div className="bg-gradient-to-r from-gray-800 to-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2">
-    //         <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-tr from-pink-500 to-red-500 rounded-full animate-pulse"></div>
-    //         <h3 className="text-xl font-semibold text-center">Jane Smith</h3>
-    //         <p className="text-center text-gray-400">UI/UX Designer</p>
-    //         <p className="text-gray-500 text-sm mt-2 text-center">
-    //           Crafting seamless and visually captivating user experiences.
-    //         </p>
-    //       </div>
-
-    //       <div className="bg-gradient-to-r from-gray-800 to-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2">
-    //         <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-tr from-green-500 to-yellow-500 rounded-full animate-scale"></div>
-    //         <h3 className="text-xl font-semibold text-center">Emily Carter</h3>
-    //         <p className="text-center text-gray-400">Project Manager</p>
-    //         <p className="text-gray-500 text-sm mt-2 text-center">
-    //           Keeping projects on track with precision and care.
-    //         </p>
-    //       </div>
-    //     </div>
-    //   </section>
-
-    //   {/* Mission Section */}
-    //   <section className="py-16 mt-20 relative z-10">
-    //     <div className="max-w-4xl mx-auto text-center">
-    //       <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-    //       <p className="text-lg text-gray-300">
-    //         Empowering businesses to thrive with innovative web solutions and
-    //         creative strategies.
-    //       </p>
-    //     </div>
-    //   </section>
-    // </div>
-
-    <div className="bg-gradient-to-br from-sky-800 via-gray-800 to-emerald-800 min-h-screen text-white overflow-hidden relative">
-      {/* Floating 3D Shapes */}
-      <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-full animate-float shadow-2xl blur-xl"></div>
-      <div className="absolute bottom-20 right-20 w-56 h-56 bg-gradient-to-bl from-pink-500 to-yellow-400 rounded-full animate-spin-slow blur-xl"></div>
-      <div className="absolute top-1/3 left-1/2 w-32 h-32 bg-gradient-to-br from-green-400 to-teal-600 rounded-full animate-pulse blur-lg -translate-x-1/2 -translate-y-1/2"></div>
-
-      {/* Header Section */}
+      {/* Hero Section
       <header className="text-center py-16 relative z-10">
-        <h1 className="text-6xl font-extrabold tracking-wide mb-4">
-          About <span className="text-blue-500">Us</span>
-        </h1>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Empowering businesses with cutting-edge solutions, innovative design,
-          and expert execution.
+        <h1 className="text-5xl font-extrabold mb-6">About Us</h1>
+        <p className="text-xl text-gray-300">
+          CAMPUS INSIGHTS SYST
         </p>
-      </header>
+      </header> */}
+
+      {/* Project Logo & About */}
+      <section className="flex flex-col lg:flex-row items-center justify-center gap-12 px-8 py-20">
+        <img src="/public/Images/Campus-insight-system logo1-01.png" alt="Project Logo" className="w-64 h-64 object-contain" />
+        <div className="max-w-2xl">
+          <h2 className="text-3xl font-bold mb-4">About The Campus Insights System</h2>
+          <p className="text-gray-300 text-lg text-justify">
+          Campus Insights System (or Feedback Evaluation System) is a comprehensive platform designed to gather, manage, and analyze feedback within a campus environment. Its primary goal is to enhance educational quality, administrative services, and overall campus experience through structured input from students, faculty, and staff.
+
+This system allows:
+
+Students to provide feedback on courses, faculty, and campus facilities.
+
+Teachers to view performance analytics and improve teaching strategies.
+
+Admins to analyze feedback trends and make data-driven decisions for continuous improvement.
+
+With real-time dashboards, user-friendly forms, and secure login for each role (admin, teacher, student), the system ensures transparency, accountability, and active participation in shaping a better campus environment.
+          </p>
+        </div>
+      </section>
+
+      {/* Project Showcase Section */}
+<section className="px-8 py-16 rounded-xl mx-4">
+  <h2 className="text-3xl font-bold text-center mb-10">Project Highlights</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div className="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img src="/src/assets/Icons/giphy.gif" alt="Dashboard" className="w-full h-56 object-cover" />
+      <div className="p-4 text-center bg-gray-900/50">
+        <p className="text-gray-200">Real-Time Dashboard</p>
+      </div>
+    </div>
+    <div className="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img src="/src/assets/Icons/giphy (1).gif" alt="Feedback Form" className="w-full h-56 object-cover" />
+      <div className="p-4 text-center bg-gray-900/50">
+        <p className="text-gray-200">Feedback Submission Form</p>
+      </div>
+    </div>
+    <div className="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+      <img src="/src/assets/Icons/giphy.webp" alt="Analytics" className="w-full h-56 object-cover" />
+      <div className="p-4 text-center bg-gray-900/50">
+        <p className="text-gray-200">Analytics and Reports</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+ {/* Mission Section */}
+ <section className="py-20 mt-20  rounded-xl mx-4">
+  <div className="max-w-4xl mx-auto text-center">
+    <h2 className="text-4xl font-extrabold mb-6 text-white tracking-wide">Our Mission</h2>
+    <p className="text-lg text-gray-300 leading-relaxed px-4">
+      Our mission is to bridge the gap between feedback and meaningful change within educational institutions. 
+      The Campus Insights System empowers students, faculty, and administrators to collaboratively shape 
+      a better learning environment. We strive to deliver transparency, encourage improvement, and promote 
+      accountability through smart, secure, and data-driven feedback mechanisms.
+    </p>
+  </div>
+</section>
+
+
+      {/* Supervisor Section */}
+      <section className="py-20 px-6  rounded-xl mx-4 mb-20 bg-gray-900/30">
+        <h2 className="text-3xl font-bold text-center mb-8 font-Montserrat">Supervisor</h2>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-10 ">
+          <img
+            src="/public/Images/Sir.png"
+            alt="Supervisor"
+            className="w-40 h-40 rounded-full object-cover shadow-lg"
+          />
+          <div className="max-w-lg text-center sm:text-left ">
+            <h3 className="text-2xl font-bold">Prof. Dr. Mir Dhani Bux Talpur</h3>
+            <p className="text-gray-200 mt-2 font-bold">Project Guide & Evaluator</p>
+            <p className="text-gray-200 mt-2 text-sm">
+              Guiding the development of robust solutions and academic excellence in final year projects.
+            </p>
+          </div>
+        </div>
+      </section>
+
 
       {/* Team Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Meet Our Team<span className="text-blue-500">.</span>
-        </h2>
-        <div className="flex flex-wrap justify-center gap-12">
+      <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 bottom-2">
+        <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className=" rounded-2xl shadow-lg p-8 max-w-xs hover:scale-105 transform transition-transform"
+              className="bg-gray-900/30 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2"
             >
-              {/* Card Hover Animation */}
-              <div className="relative group">
-                {/* <img
-                  className="w-32 h-32 mx-auto  object-cover mb-6 group-hover:opacity-80 transition-opacity"
-                  src={member.img}
-                  alt={member.name}
-                /> */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-50 rounded-full">
-                  <p className="text-sm text-gray-200 px-4 text-center">
-                    {member.description}
-                  </p>
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold text-center">
-                {member.name}
-              </h3>
-              <p className="text-center text-blue-400 font-medium">
-                {member.role}
-              </p>
+              <img
+                src={member.img}
+                alt={member.name}
+                className="w-24 h-24 mx-auto mb-4 rounded-full object-cover shadow-md"
+              />
+              <h3 className="text-xl font-semibold text-center">{member.name}</h3>
+              <p className="text-center text-gray-200">{member.role}</p>
+              <p className="text-gray-300 text-sm mt-2 text-center">{member.description}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="relative z-10 py-16 bg-gradient-to-b from-gray-900 to-black mt-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8">
-            Our Mission<span className="text-green-400">.</span>
-          </h2>
-          <p className="text-lg text-gray-300 leading-relaxed">
-            To deliver innovative, efficient, and sustainable solutions that
-            drive businesses toward success, ensuring exceptional results with a
-            customer-centric approach.
-          </p>
-        </div>
-      </section>
+   
 
-      {/* Parallax Footer with 3D Animations */}
-      <footer className="relative bg-gray-800 py-16 text-center text-gray-300 overflow-hidden">
-        <div className="max-w-3xl mx-auto">
-          <h3 className="text-3xl font-bold mb-4">
-            Let’s Build Something Great
-            <span className="text-yellow-400">.</span>
-          </h3>
-          <p>
-            Have questions? Get in touch to discover how we can help transform
-            your vision into reality.
-          </p>
-        </div>
-
-        {/* Rotating Circle */}
-        <div className="absolute -top-32 left-1/3 w-96 h-96 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-rotate-slow blur-2xl opacity-40"></div>
-        <div className="absolute bottom-0 -right-32 w-72 h-72 bg-gradient-to-tr from-blue-500 to-teal-400 rounded-full animate-spin-reverse blur-2xl opacity-30"></div>
-      </footer>
+      <Footer />
     </div>
   );
 }

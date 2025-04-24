@@ -62,6 +62,7 @@ function Admin() {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen flex">
+   
       {/* Sidebar */}
       <aside className="w-64 bg-gray-800 shadow-lg min-h-screen p-6 fixed">
         <h1 className="text-2xl font-bold mb-8 text-center">Admin Panel</h1>
@@ -169,8 +170,10 @@ function Admin() {
           </table>
         </section>
       </main>
+
     </div>
   );
 }
 
 export default Admin;
+
