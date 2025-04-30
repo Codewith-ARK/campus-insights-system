@@ -1,5 +1,6 @@
 import React from "react";
 import { Line, Bar } from "react-chartjs-2";
+import jsPDF from "jspdf";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -25,7 +26,7 @@ ChartJS.register(
 );
 
 function Admin() {
-  // Sample chart data for Line Chart
+  // Sample chart data
   const lineChartData = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets: [
@@ -46,9 +47,8 @@ function Admin() {
     ],
   };
 
-  // Sample chart data for Bar Chart
   const barChartData = {
-    labels: ["User Role", "Admin", "User", "Guest"],
+    labels: ["Admin", "User", "Guest"],
     datasets: [
       {
         label: "User Count",
@@ -60,30 +60,61 @@ function Admin() {
     ],
   };
 
+  // Function to generate report
+  const handleGenerateReport = () => {
+    const doc = new jsPDF();
+
+    doc.addImage("../../public/Images/Campus-insight-system logo1-01.png", "PNG", 20, 10, 30, 30);  // Adjust size and position as needed
+    // Title
+    doc.setFontSize(18);
+    doc.text("Campus Insights System", 20, 20);
+
+    // Report content
+    doc.setFontSize(12);
+    doc.text("Generated Report Summary:", 20, 40);
+    doc.text("• Total Users: 1,245", 20, 50);
+    doc.text("• Total Events: 76", 20, 60);
+    doc.text("• Pending Notifications: 32", 20, 70);
+    doc.text("• Date: " + new Date().toLocaleDateString(), 20, 80);
+
+    // Save PDF
+    doc.save("campus-insights-report.pdf");
+  };
+
   return (
     <div className="bg-gray-900 text-white min-h-screen flex">
-   
       {/* Sidebar */}
       <aside className="w-64 bg-gray-800 shadow-lg min-h-screen p-6 fixed">
-        <h1 className="text-2xl font-bold mb-8 text-center">Admin Panel</h1>
+        {/* Logo and Project Name */}
+        <div className="flex flex-col items-center mb-8">
+          <img
+            src="../../public/Images/Campus-insight-system-logo.png"  // Path to your logo image
+            alt="Campus Insights System Logo"
+            className="w-16 h-16 mb-2"  // Adjust the size of the logo
+          />
+          <h1 className="text-lg font-bold text-center text-white">
+            Campus Insights System
+          </h1>
+        </div>
         <ul className="space-y-6">
           <li className="hover:bg-gray-700 p-3 rounded-lg cursor-pointer">
-            <i className="fas fa-tachometer-alt"></i>{" "}
+            <i className="fas fa-tachometer-alt"></i>
             <span className="ml-2">Dashboard</span>
           </li>
           <li className="hover:bg-gray-700 p-3 rounded-lg cursor-pointer">
-            <i className="fas fa-users"></i> <span className="ml-2">Users</span>
+            <i className="fas fa-users"></i>
+            <span className="ml-2">Users</span>
           </li>
           <li className="hover:bg-gray-700 p-3 rounded-lg cursor-pointer">
-            <i className="fas fa-calendar-alt"></i>{" "}
+            <i className="fas fa-calendar-alt"></i>
             <span className="ml-2">Events</span>
           </li>
           <li className="hover:bg-gray-700 p-3 rounded-lg cursor-pointer">
-            <i className="fas fa-bell"></i>{" "}
+            <i className="fas fa-bell"></i>
             <span className="ml-2">Notifications</span>
           </li>
           <li className="hover:bg-gray-700 p-3 rounded-lg cursor-pointer">
-            <i className="fas fa-cogs"></i>{" "}
+            <i className="fas fa-cogs"></i>
             <span className="ml-2">Settings</span>
           </li>
         </ul>
@@ -91,7 +122,7 @@ function Admin() {
 
       {/* Main Content */}
       <main className="ml-64 p-8 w-full">
-        {/* Charts */}
+        {/* Charts Section */}
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Growth and Registrations</h2>
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
@@ -100,11 +131,21 @@ function Admin() {
             </h3>
             <Line data={lineChartData} />
           </div>
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
             <h3 className="text-xl font-semibold mb-4">
               User Role Distribution
             </h3>
             <Bar data={barChartData} />
+          </div>
+
+          {/* Generate Report Button */}
+          <div className="flex justify-end">
+            <button
+              onClick={handleGenerateReport}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow"
+            >
+              Generate Report
+            </button>
           </div>
         </section>
 
@@ -170,10 +211,8 @@ function Admin() {
           </table>
         </section>
       </main>
-
     </div>
   );
 }
 
 export default Admin;
-

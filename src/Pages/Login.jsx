@@ -26,7 +26,7 @@ const Login = () => {
         {/* Logo Image */}
         <div className="flex justify-center mb-4">
           <img
-            src="/Images/Campus-insight-system logo1-01.png" // keep in /public folder
+            src="/Images/logo.png" // keep in /public folder
             alt="Logo"
             className="h-24 w-auto bg-white rounded-full"
           />
