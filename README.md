@@ -1,3 +1,13 @@
+
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- # [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
 # Campus Insight System
 
 ## Overview
@@ -23,11 +33,13 @@ The **Campus Insight System** is a web-based application designed to provide stu
 ## Installation and Setup
 
 ### Prerequisites
+
 - Node.js and npm installed.
 - Python (3.8+) installed.
 - PostgreSQL database (or an alternative setup).
 
 ### Backend (Django)
+
 1. Clone the repository and navigate to the `backend/` folder:
    ```bash
    cd backend
@@ -51,6 +63,7 @@ The **Campus Insight System** is a web-based application designed to provide stu
    ```
 
 ### Frontend (React)
+
 1. Navigate to the `frontend/` folder:
    ```bash
    cd frontend
@@ -69,24 +82,32 @@ The **Campus Insight System** is a web-based application designed to provide stu
    ```
 
 ### Integration with University Website
+
 - The system will be integrated into the university website by embedding the React frontend or linking to it directly via the university domain.
 
 ## Deployment
+
 - **Frontend:** Deployed on Netlify or Vercel.
 - **Backend:** Deployed on Heroku, AWS, or Render.
 - Use HTTPS for secure communication between frontend and backend.
 
 ## Contribution
+
 Contributions are welcome! Please follow these steps:
+
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
 3. Submit a pull request with a clear description of the changes.
 
 ## License
+
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
 ## Contact
+
 For queries or feedback, please contact:
+
 - **Name:** [Your Name]
 - **Email:** [Your Email]
 - **University:** [Your University Name]
+
