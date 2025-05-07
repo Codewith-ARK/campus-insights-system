@@ -134,27 +134,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.User'
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
-
 CORS_ALLOW_CREDENTIALS = True
+
 CORS_ALLOWED_ORIGINS = [
-    "http://192.168.1.8:3000",  # your frontend
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://192.168.1.8:3000",
 ]
+
 CSRF_TRUSTED_ORIGINS = [
-    "http://192.168.1.8:3000"
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://192.168.1.8:3000",
 ]
 
-from corsheaders.defaults import default_headers, default_methods
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
-CORS_ALLOW_METHODS = list(default_methods)
-CORS_ALLOW_HEADERS = list(default_headers) + [
-    "content-type",
-]
-
-
-# Alternatively, if you're testing in a more flexible way:
-CORS_ALLOW_ALL_ORIGINS = True  # This will allow all origins, useful in development, but not recommended for production
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}

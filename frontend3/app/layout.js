@@ -3,7 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import TopProgressBar from "@/components/ui/TopProgressBar";
-import { Toaster, toast } from 'sonner'
+import { UserProvider } from "@/context/UserContext";
+import CustomToaster from "@/components/CustomToaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,14 +27,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${outfit.className}  antialiased`}
       >
-        <Navbar />
-        <Toaster 
-        position="bottom-right"
-        richColors={true}
-        />
-        <TopProgressBar />
-        {children}
-        <Footer />
+        <UserProvider>
+          <Navbar />
+          <CustomToaster />
+          <TopProgressBar />
+          {children}
+          <Footer />
+        </UserProvider>
       </body>
     </html>
   );

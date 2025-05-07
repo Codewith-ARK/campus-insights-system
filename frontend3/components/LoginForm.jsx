@@ -1,20 +1,22 @@
 'use client'; // For Next.js App Router
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from './validation/loginSchema';
 import InputField from './InputField';
 import Link from 'next/link';
-import axiosClient from '@/public/icon/axios';
+import axiosClient from '@/lib/axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { useUser } from '@/context/UserContext';
+import { getCSRFHeaders } from '@/utils/csrf';
 
 
 const LoginForm = () => {
-
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
+  const { setIsLoggedIn } = useUser();
   const {
     register,
     handleSubmit,
@@ -26,15 +28,20 @@ const LoginForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await axiosClient.post('/api/token/', data);
-      // Optionally redirect or store user info
+      setIsLoading(true);
+      const csrfHeaders = await getCSRFHeaders(); // get CSRF header for login request
+      await axiosClient.post('/api/auth/', data, { 
+        headers: csrfHeaders,
+      });
       toast.success('Login successful')
       reset();
+      setIsLoggedIn(true);
       router.push("/dashboard")
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);
-      console.error(err)
-      toast.error("Login Failed", {description: err.response.data.detail})
+      toast.error("Login Failed", { description: err.response.data.detail })
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -60,7 +67,8 @@ const LoginForm = () => {
 
       <button
         type="submit"
-        className="w-full bg-emerald-500 text-white py-2 rounded-md hover:bg-emerald-700 hover:scale-105 transition ease-out duration-300 cursor-pointer"
+        className={`rounded-full mt-2 w-full bg-emerald-500 text-white py-2 hover:bg-emerald-700 hover:scale-105 transition ease-out duration-300 cursor-pointer btn-disabled disabled:bg-gray-500 disabled:scale-100`}
+        disabled={isLoading}
       >
         Sign In
       </button>
