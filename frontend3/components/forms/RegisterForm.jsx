@@ -6,8 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from '../validation/registerSchema';
 import InputField from '../InputField';
 import Link from 'next/link';
-import axiosClient from '@/public/icon/axios';
+import axiosClient from '@/lib/axios';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -24,14 +25,13 @@ const RegisterForm = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axiosClient.post('/api/users/register/', data);
-      console.log(res)
       if(res.status === 201 || res.status === 200) {
-        router.refresh()
         router.push('/login')
       } 
       reset();
     } catch (err) {
       console.error('Register failed:', err.response?.data || err.message);
+      toast.error("Registration Failed", {description: err.message})
     }
   };
   

@@ -4,6 +4,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { FaXmark, FaBarsStaggered } from "react-icons/fa6";
 import LinkButton from "./LinkButton";
+import ProfileDropdown from "../user/ProfileDropdown";
+import { useUser } from "@/context/UserContext";
 
 function NavbarLinks() {
   return (<>
@@ -21,12 +23,14 @@ function NavbarLinks() {
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isLoggedIn } = useUser();
+
   return (
     <nav className='bg-gray-900 w-full data-aos="fade-right"'>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-1">
+      <div className="px-4 md:px-20 lg:px-40">
+        <div className="flex flex-row-reverse md:flex-row items-center justify-between py-4 md:py-1">
           {/* Logo only, no heading */}
-          <div className="flex items-center">
+          <div className="hidden md:flex items-center">
             <img src={'/logo.png'} alt="Logo" className="h-[64px] aspect-square" />
           </div>
 
@@ -34,15 +38,18 @@ function Navbar() {
           <div className="hidden md:flex flex-1 justify-center items-center space-x-8">
             <NavbarLinks />
           </div>
-          <LinkButton url={"/login"}>
-            Login
-          </LinkButton>
+          {isLoggedIn
+            ? <ProfileDropdown />
+            : <LinkButton url={"/login"}>
+              Login
+            </LinkButton>
+          }
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="block md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 hover:text-pink-600 focus:outline-none"
+              className="text-white"
             >
               {isOpen ? (
                 <FaXmark className="w-6 h-6" />
@@ -56,7 +63,7 @@ function Navbar() {
 
       {/* Mobile Links */}
       {isOpen && (
-        <div className="md:hidden bg-slate-500 shadow-md">
+        <div className="md:hidden bg-transparent transition shadow-md">
           <div className="px-4 py-4 flex flex-col items-center space-y-3">
             <NavbarLinks />
           </div>
