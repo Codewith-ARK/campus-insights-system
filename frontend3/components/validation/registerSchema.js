@@ -9,7 +9,8 @@ export const registerSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password')], 'Passwords do not match')
     .required('Please confirm your password'),
-  roll_number: yup.string().required('Student roll number is required'),
-  department: yup.string().default('cs'),
+  enrollment_number: yup.string().required('Student roll number is required'),
+  department: yup.string().oneOf(['cs', 'it', 'bba', 'bed', 'english'], 'Invalid department').required('Department field is required'),
+  batch: yup.string().oneOf(['2k19', '2k20', '2k21', '2k22', '2k23', '2k24', '2k25'], 'Invalid batch').required('Batch field is required'),
   role: yup.string().oneOf(['student'], 'Invalid role').default('student'),
 });

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from '../validation/registerSchema';
 import InputField from '../InputField';
@@ -9,10 +9,12 @@ import Link from 'next/link';
 import axiosClient from '@/lib/axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
+import SelectInput from './SelectInput';
+import { batchOptions, deptOptions } from '@/data/selectOptions';
 
 const RegisterForm = () => {
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -23,19 +25,21 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (data) => {
+    toast.info('Registering...')
     try {
-      const res = await axiosClient.post('/api/users/register/', data);
-      if(res.status === 201 || res.status === 200) {
+      const res = await makeAuthenticatedReq('/api/users/register/', data);
+      if (res.status === 201 || res.status === 200) {
         router.push('/login')
-      } 
+      }
       reset();
     } catch (err) {
       console.error('Register failed:', err.response?.data || err.message);
-      toast.error("Registration Failed", {description: err.message})
+      toast.error("Registration Failed", { description: err.message })
     }
   };
-  
+
   return (
+
     <form onSubmit={handleSubmit(onSubmit)} className="w-full mx-4 z-10 relative max-w-lg lg:mx-auto my-20 p-6 bg-black/30 backdrop-blur-3xl rounded-lg shadow-md overflow-clip">
       {/* Animated background shapes */}
       <div className="-z-10 absolute top-0 left-0 w-80 h-80 bg-yellow-400 rounded-full filter blur-2xl opacity-30 "></div>
@@ -46,6 +50,21 @@ const RegisterForm = () => {
       <h2 className="text-2xl font-bold mb-6 text-center">Create an Account</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <SelectInput
+          label={"Batch"}
+          name={"batch"}
+          options={batchOptions}
+          register={register}
+          errors={errors} // WARNING: expects complete error object
+        />
+        <SelectInput
+          label={"Department"}
+          name={"department"}
+          options={deptOptions}
+          register={register}
+          errors={errors} // WARNING: expects complete error object
+        />
+
         <InputField
           label="First Name"
           name="first_name"
@@ -85,13 +104,10 @@ const RegisterForm = () => {
 
       <InputField
         label="Student Roll Number"
-        name="roll_number"
+        name="enrollment_number"
         register={register}
-        error={errors.roll_number}
+        error={errors.enrollment_number}
       />
-
-
-
 
       <button
         type="submit"

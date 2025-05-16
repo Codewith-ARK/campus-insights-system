@@ -15,7 +15,6 @@ export const UserProvider = ({ children }) => {
       setLoading(true);
       try {
         const res = await axiosClient.get('/api/me');
-        console.log(res)
         setUser(res.data);
       } catch {
         setUser(null);
