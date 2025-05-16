@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useUser } from '@/context/UserContext';
 import { getCSRFHeaders } from '@/utils/csrf';
+import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
 
 
 const LoginForm = () => {
@@ -29,14 +30,16 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
-      const csrfHeaders = await getCSRFHeaders(); // get CSRF header for login request
-      await axiosClient.post('/api/auth/', data, { 
-        headers: csrfHeaders,
-      });
+      const res = await makeAuthenticatedReq('/api/auth/', data);
+      console.log(res.data)
       toast.success('Login successful')
       reset();
       setIsLoggedIn(true);
-      router.push("/dashboard")
+      if (res?.data.user.role == 'student') {
+        router.push("/dashboard");
+      } else {
+        router.push("/admin/dashboard");
+      }
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);
       toast.error("Login Failed", { description: err.response.data.detail })

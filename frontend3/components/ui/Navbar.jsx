@@ -6,6 +6,7 @@ import { FaXmark, FaBarsStaggered } from "react-icons/fa6";
 import LinkButton from "./LinkButton";
 import ProfileDropdown from "../user/ProfileDropdown";
 import { useUser } from "@/context/UserContext";
+import SidebarToggle from "../sidebar/SidebarToggle";
 
 function NavbarLinks() {
   return (<>
@@ -26,10 +27,11 @@ function Navbar() {
   const { isLoggedIn } = useUser();
 
   return (
-    <nav className='bg-gray-900 w-full data-aos="fade-right"'>
-      <div className="px-4 md:px-20 lg:px-40">
+    <nav className='bg-gray-900 w-full border-b border-gray-700 data-aos="fade-right"'>
+      <div className="px-4 md:px-10">
         <div className="flex flex-row-reverse md:flex-row items-center justify-between py-4 md:py-1">
           {/* Logo only, no heading */}
+          <SidebarToggle />
           <div className="hidden md:flex items-center">
             <img src={'/logo.png'} alt="Logo" className="h-[64px] aspect-square" />
           </div>

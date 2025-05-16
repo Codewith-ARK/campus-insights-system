@@ -13,7 +13,7 @@ function Footer() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-24">
+      <div className="relative container mx-auto px-6 md:px-12 lg:px-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
           {/* Brand Info */}
