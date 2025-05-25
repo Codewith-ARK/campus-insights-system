@@ -2,6 +2,7 @@
 import AdminActionCard from '@/components/cards/AdminActionCard'
 import FeedbackForm from '@/components/feedbackForm/FeedbackForm';
 import SectionHeading from '@/components/SectionHeading'
+import EmptyContainer from '@/components/skeleton/EmptyContainer';
 import axiosClient from '@/lib/axios';
 import React, { useEffect, useState } from 'react'
 import { LuChartSpline, LuFileStack, LuPencil } from 'react-icons/lu'
@@ -23,7 +24,7 @@ export default function page() {
 
   return (
     <div>
-      <SectionHeading text={"Forms"} />
+      <SectionHeading text={"Actions"} />
       <section className='grid grid-cols-1 md:grid-cols-3 gap-6'>
         <AdminActionCard
           url={"/admin/form/all"}
@@ -44,15 +45,24 @@ export default function page() {
           title={"View Analytics"}
           description={"View detailed analytics from feedback"}
           icon={<LuChartSpline size={18} />}
+          isDisabled={true}
         />
 
       </section>
 
       <SectionHeading text={"Recent Forms"} />
       <section className='flex flex-col space-y-3'>
-        {forms?.map((item, index) => (
-          <FeedbackForm key={index}/>
-        ))}
+        {forms?.length > 0
+        ? forms?.map((item, index) => (
+          <FeedbackForm props={item} key={index} />
+        ))
+        : <EmptyContainer label={"No feedback forms found"}/>
+      }
+        {}
+      </section>
+      <section>
+        <SectionHeading text={"Recent Updates"} />
+        <EmptyContainer label={"Nothing to show here..."}/>
       </section>
     </div>
   )

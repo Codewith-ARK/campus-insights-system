@@ -5,15 +5,17 @@ import StatCard from '@/components/statCard/StatCard'
 import { LuArrowRight, LuPencil } from 'react-icons/lu'
 import AdminActionCard from '@/components/cards/AdminActionCard'
 import SectionHeading from '@/components/SectionHeading'
+import EmptyContainer from '@/components/skeleton/EmptyContainer'
+import SectionHeader from '@/components/SectionHeader'
 
 export default function page() {
   return (
     <div className='flex flex-col gap-8'>
-      <section id='header' className='p-6 border border-gray-700 rounded-xl'>
-        <h1 className='text-2xl font-bold'>Dashboard</h1>
-        <p className='text-neutral-400'>View and analyze student feedback across all courses and departments</p>
-        <p className='text-neutral-400'>This dashboard provides insights into student feedback, helping faculty and administrators identify areas for improvement and track satisfaction metrics over time.</p>
-      </section>
+      <SectionHeader
+        title={"Dashboard"}
+        subtitle={"View and analyze feedback"}
+        description={"This dashboard provides insights into student feedback, helping faculty and administrators identify areas for improvement and track satisfaction metrics over time."}
+      />
       <section id='actions' className=''>
         <SectionHeading text={"Admin Actions"} />
         <section className='grid grid-cols-1 md:grid-cols-3'>
@@ -43,6 +45,7 @@ export default function page() {
       </section>
       <section>
         <DashboardFilter />
+        <EmptyContainer label={"Nothing to show here..."} />
       </section>
     </div>
   )

@@ -22,7 +22,7 @@ export default function ProfileDropdown() {
         <ProfileAvatar firstName={user.first_name} lastName={user.last_name} /> 
       </div>
       <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm space-y-1">
-        {[{ url: "/profile", text: "Profile" }, { url: "/prefrences", text: "Settings" }].map((item, index) => (
+        {[{ url: "/profile", text: "Profile" }, { url: "/settings", text: "Settings" }].map((item, index) => (
           <li key={index}><Link href={item.url}>{item.text}</Link></li>
         ))}
         <li><Link className='btn btn-error' href={"/logout"}>Logout</Link></li>
