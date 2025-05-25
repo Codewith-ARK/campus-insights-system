@@ -8,6 +8,11 @@ from rest_framework import status
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import MyTokenObtainPairSerializer
 from django.http import JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
 # Optional: Custom registration endpoint
 
 
@@ -25,6 +30,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return [permissions.IsAuthenticated()]
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class RegisterView(APIView):
     permission_classes = [permissions.AllowAny]
 
@@ -34,7 +40,7 @@ class RegisterView(APIView):
             user = serializer.save()
             # Serialize user data (excluding password)
             user_data = UserSerializer(user).data
-            return Response({'message': 'User created successfully', 'user':user_data}, status=status.HTTP_201_CREATED)
+            return Response({'message': 'User created successfully', 'user': user_data}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -115,15 +121,19 @@ class UserProfileView(APIView):
 
     def get(self, request):
         user = request.user
-        print(user)
-        return Response({
+        user_data = {
             'id': user.id,
             'username': user.username,
-            'email': user.username,
+            'email': user.email,
             'first_name': user.first_name,
             'last_name': user.last_name,
             'role': user.role
-        })
+        }
+        if hasattr(user, 'role') and user.role == 'student':
+            user_data['batch'] = getattr(user, 'batch', None)
+            user_data['department'] = getattr(user, 'department', None)
+
+        return Response(user_data)
 
 # Simple username + password-based authentication
 class SimpleLoginView(APIView):
@@ -139,16 +149,14 @@ class SimpleLoginView(APIView):
                 'user': {
                     'id': user.id,
                     'username': user.username,
-                    'email': user.email
+                    'email': user.email,
+                    'role': user.role
                 }
             }, status=status.HTTP_200_OK)
             # return JsonResponse({'message': 'Login successful'}, status=200)
         else:
             return JsonResponse({'error': 'Invalid credentials'}, status=401)
         
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.http import JsonResponse
-
 @ensure_csrf_cookie
 def csrf_token_view(request):
     return JsonResponse({'message': 'CSRF cookie set'})

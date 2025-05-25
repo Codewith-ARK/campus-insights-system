@@ -10,7 +10,19 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'role', 'department', 'enrollment_number', 'is_staff', 'is_active']
+        fields = [
+            'id',
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'role',
+            'department',
+            'batch',
+            'enrollment_number',
+            'is_active',
+        ]
+        read_only_fields = ['id', 'is_active']
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
@@ -26,7 +38,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             'confirm_password',
             'role',
             'department',
-            'enrollment_number'
+            'enrollment_number',
+            'batch'
         ]
 
     def validate(self, data):
@@ -41,8 +54,9 @@ class RegisterSerializer(serializers.ModelSerializer):
             last_name=validated_data['last_name'],
             password=validated_data['password'],
             role=validated_data.get('role'),
+            enrollment_number=validated_data.get('enrollment_number', ''),
             department=validated_data.get('department'),
-            enrollment_number=validated_data.get('enrollment_number', '')
+            batch=validated_data.get('batch', '')
         )
         return user
 
