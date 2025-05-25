@@ -20,8 +20,10 @@ urlpatterns = [
     path("api/csrf/", csrf_token_view),
     path('api/me/', UserProfileView.as_view(), name='user_profile'),
     path('api/users/', include('user.urls')),
-    path('api/feedback/forms/', include('feedback.urls')),
-    path('api/responses/', include('responses.urls')),
-    path('api/preferences/', include('preferences.urls')),
+    path('api/preference/', include('preferences.urls')),
+
+    # path('api/feedback/', include('feedback.urls')),
+    path('api/form/', include('feedback.urls')),
+    path('api/response/', include('responses.urls')),
     path('api/insights/', include('insights.urls')),
 ]

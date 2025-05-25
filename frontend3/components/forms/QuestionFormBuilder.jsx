@@ -13,8 +13,10 @@ import { LuPlus } from 'react-icons/lu';
 import { toast } from 'sonner';
 import AudienceInput from './AudienceInput';
 import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
+import { useRouter } from 'next/navigation';
 
 export default function FormBuilder() {
+  const router = useRouter();
   const methods = useForm({
     resolver: yupResolver(formBuilderSchema),
     defaultValues: {
@@ -48,10 +50,11 @@ export default function FormBuilder() {
       };
 
       // const res = await axiosClient.post('/api/feedback/forms/new/', cleanedData)
-      const res = await makeAuthenticatedReq('/api/feedback/form/new/', cleanedData);
+      const res = await makeAuthenticatedReq('/api/form/new/', cleanedData);
       if(res.status === 201){
         // Display success toast
         toast.success("Created Successfully", { description: "Your form was created successfully." });
+        router.push('/admin/form/');
       }
     } catch (error) {
       console.error("Form submission failed:", error);
