@@ -1,3 +1,5 @@
+import AdminWrapper from "@/components/AdminWrapper";
+import AuthWrapper from "@/components/AuthWrapper";
 import Sidebar from "@/components/sidebar/Sidebar";
 import React from "react";
 
@@ -6,11 +8,10 @@ export const metadata = {
   description: "",
 };
 
-
 export default function RootLayout({ children }) {
   return (
-    <Sidebar>
-      {children}
-    </Sidebar>
+    // <AdminWrapper>
+      <Sidebar>{children}</Sidebar>
+    // </AdminWrapper>
   );
 }
