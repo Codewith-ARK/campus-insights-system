@@ -6,18 +6,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from './validation/loginSchema';
 import InputField from './InputField';
 import Link from 'next/link';
-import axiosClient from '@/lib/axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { useUser } from '@/context/UserContext';
-import { getCSRFHeaders } from '@/utils/csrf';
-import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
-
+import useAuthStore from '@/store/useAuthStore';
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const login = useAuthStore(state => state.login);
+  const user = useAuthStore(state => state.user);
   const router = useRouter();
-  const { setIsLoggedIn } = useUser();
+
   const {
     register,
     handleSubmit,
@@ -29,25 +27,27 @@ const LoginForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      setIsLoading(true);
-      const res = await makeAuthenticatedReq('/api/auth/', data);
-      console.log(res.data)
+      const res = await login(data);
+      const { access, refresh } = res.data;
+
+      // ✅ Store tokens in localStorage
+      localStorage.setItem('access_token', access);
+      localStorage.setItem('refresh_token', refresh);
       toast.success('Login successful')
       reset();
-      setIsLoggedIn(true);
-      if (res?.data.user.role == 'student') {
+      if (user?.role === 'student') {
         router.push("/dashboard");
       } else {
         router.push("/admin/dashboard");
       }
     } catch (err) {
+      console.error(err)
       console.error('Login failed:', err.response?.data || err.message);
       toast.error("Login Failed", { description: err.response.data.detail })
     } finally {
       setIsLoading(false);
     }
   };
-
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-black/30 relative z-20 bg-opacity-30 backdrop-blur-lg p-6 py-20 rounded-lg shadow-2xl w-96">

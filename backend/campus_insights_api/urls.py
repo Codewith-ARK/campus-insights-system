@@ -1,17 +1,17 @@
 from django.contrib import admin
 from django.urls import path, include
+from user.views import UserProfileView, SimpleLoginView, csrf_token_view
 from rest_framework_simplejwt.views import (
-    TokenRefreshView,
+  TokenObtainPairView,
+  TokenRefreshView 
 )
-from user.views import MyTokenObtainPairView, LoginView, UserProfileView, SimpleLoginView, csrf_token_view
-from rest_framework_simplejwt.views import TokenRefreshView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    # JWT Authentication
-    path('api/token/', LoginView.as_view(), name='token_obtain_pair'),   # login
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # refresh
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # User Auth
     path('api/auth/', SimpleLoginView.as_view(), name='token_obtain_pair'),   # login
