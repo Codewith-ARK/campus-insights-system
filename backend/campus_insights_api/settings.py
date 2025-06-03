@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'campus_insights_api.wsgi.application'
+WSGI_APPLICATION = 'campus_insights_api.wsgi.app'
 
 
 # Database
@@ -140,12 +140,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://192.168.1.8:3000",
+    ".vercel.app"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://192.168.1.8:3000",
+    ".vercel.app"
 ]
 
 SESSION_COOKIE_SECURE = False
@@ -156,3 +158,18 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
 }
+
+ALLOWED_HOSTS = ['*', '.vercel.app']
+
+# Update DATABASES setting
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        conn_max_age=600
+    )
+}
+
+# Add STATIC_ROOT
+STATIC_ROOT = BASE_DIR / 'staticfiles'
