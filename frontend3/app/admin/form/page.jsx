@@ -1,6 +1,6 @@
 'use client'
 import AdminActionCard from '@/components/cards/AdminActionCard'
-import FeedbackForm from '@/components/feedbackForm/FeedbackForm';
+import FeedbackFormCard from '@/components/feedbackForm/FeedbackFormCard';
 import SectionHeading from '@/components/SectionHeading'
 import EmptyContainer from '@/components/skeleton/EmptyContainer';
 import axiosClient from '@/lib/axios';
@@ -51,10 +51,10 @@ export default function page() {
       </section>
 
       <SectionHeading text={"Recent Forms"} />
-      <section className='flex flex-col space-y-3'>
+      <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-3 gap-6'>
         {forms?.length > 0
         ? forms?.map((item, index) => (
-          <FeedbackForm props={item} key={index} />
+          <FeedbackFormCard props={item} key={index} />
         ))
         : <EmptyContainer label={"No feedback forms found"}/>
       }

@@ -3,8 +3,8 @@ import SectionHeader from '@/components/SectionHeader';
 import SectionHeading from '@/components/SectionHeading';
 import Button from '@/components/ui/Button';
 import CustomBadge from '@/components/ui/CustomBadge';
-import { useUser } from '@/context/UserContext';
 import axiosClient from '@/lib/axios';
+import useAuthStore from '@/store/useAuthStore';
 import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -13,14 +13,16 @@ export default function Page() {
   const { id } = useParams();
   const [form, setForm] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { user } = useUser();
+  const user = useAuthStore(state => state.user);
   const [answers, setAnswers] = useState({});
 
   useEffect(() => {
     async function fetchForm() {
       const res = await axiosClient.get(`/api/form/get/${id}/`);
+      await axiosClient.get(`/api/response/get/${id}`).then(res => console.log(res));
       setForm(res.data);
     }
+
     fetchForm();
   }, [id])
 
@@ -29,7 +31,7 @@ export default function Page() {
   const handleInputChange = (questionId, value, type) => {
     setAnswers(prev => ({
       ...prev,
-      [questionId]: type === 'checkbox' 
+      [questionId]: type === 'checkbox'
         ? [...(prev[questionId] || []), value].filter(v => v) // Handle array for checkboxes
         : value // Single value for radio
     }));
@@ -80,7 +82,7 @@ export default function Page() {
             onChange={handleInputChange}
           />
         ))}
-        
+
         <div className="flex justify-end mt-6">
           <Button
             type="submit"
@@ -97,7 +99,7 @@ export default function Page() {
 
 function FormQuestions({ questionId, index, text, questionType, options, onChange }) {
   const handleChange = (e) => {
-    const value = questionType === 'checkbox' 
+    const value = questionType === 'checkbox'
       ? e.target.checked ? e.target.value : null
       : e.target.value;
     onChange(questionId, value, questionType);
@@ -108,13 +110,13 @@ function FormQuestions({ questionId, index, text, questionType, options, onChang
       <h4 className="text-lg mb-4">{index + 1}. {text}</h4>
       <div className="space-y-2">
         {options.map((option) => (
-          <label 
-            key={option.id} 
+          <label
+            key={option.id}
             className="flex items-center gap-2 cursor-pointer hover:bg-gray-700 p-2 rounded"
           >
-            <input 
+            <input
               type={questionType}
-              className={questionType === 'radio' ? 'radio' : 'checkbox'} 
+              className={questionType === 'radio' ? 'radio' : 'checkbox'}
               name={`question_${questionId}`}
               value={option.id}
               onChange={handleChange}
