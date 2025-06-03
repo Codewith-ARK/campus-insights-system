@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"  # default False for production safety
+DEBUG = True  # default False for production safety
 ALLOWED_HOSTS = []
 
 
@@ -161,12 +164,29 @@ ALLOWED_HOSTS = ['*', '.vercel.app']
 # Update DATABASES setting
 import dj_database_url
 
+# DATABASES= {
+#     'default':{
+#         'ENGINE':'django.db.backends.postgresql_psycopg2',
+#         'NAME':os.getenv('POSTGRES_DB_NAME'),
+#         'USER':os.getenv('POSTGRES_USER'),
+#         'PASSWORD':os.getenv('POSTGRES_PASSWORD'),
+#         'HOST':os.getenv('POSTGRES_HOST'),
+#         'PORT':os.getenv('POSTGRES_PORT'),
+#     }
+# }
+
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True
     )
 }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+#         conn_max_age=600
+#     )
+# }
 
 # Add STATIC_ROOT
 STATIC_ROOT = BASE_DIR / 'staticfiles'
