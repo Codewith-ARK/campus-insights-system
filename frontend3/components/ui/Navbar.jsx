@@ -1,12 +1,11 @@
 'use client'
-import { Outfit } from "next/font/google";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaXmark, FaBarsStaggered } from "react-icons/fa6";
 import LinkButton from "./LinkButton";
 import ProfileDropdown from "../user/ProfileDropdown";
-import { useUser } from "@/context/UserContext";
 import SidebarToggle from "../sidebar/SidebarToggle";
+import useAuthStore from "@/store/useAuthStore";
 
 function NavbarLinks() {
   return (<>
@@ -24,7 +23,7 @@ function NavbarLinks() {
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLoggedIn } = useUser();
+  const isLoggedIn = useAuthStore(state => state.isLoggedIn);
 
   return (
     <nav className='bg-gray-900 w-full border-b border-gray-700 data-aos="fade-right"'>

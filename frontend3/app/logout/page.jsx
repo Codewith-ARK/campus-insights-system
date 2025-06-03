@@ -1,21 +1,20 @@
 'use client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useUser } from '@/context/UserContext';
 import { toast } from 'sonner';
+import useAuthStore from '@/store/useAuthStore';
 
 export default function Page() {
   const router = useRouter();
-  const { logout } = useUser();
+  const logout = useAuthStore(state => state.logout);
 
   useEffect(() => {
-    // fetch('/api/logout', { method: 'GET' }).then(() => router.push('/login'))
     try {
       logout();
-      toast.info("Logout Successful", {description: "Redirecting to homepage"})
-    } catch(err){
+      toast.info("Logout Successful", { description: "Redirecting to homepage" })
+    } catch (err) {
       console.error(err);
-      toast.error("Error logging out", {description: err.message});
+      toast.error("Error logging out", { description: err.message });
     } finally {
       router.push('/login')
     }

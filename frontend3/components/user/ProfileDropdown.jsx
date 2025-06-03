@@ -1,15 +1,11 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ProfileAvatar from './ProfileAvatar'
 import Link from 'next/link'
-import axiosClient from '@/lib/axios';
-import { useUser } from '@/context/UserContext';
+import useAuthStore from '@/store/useAuthStore';
 // import axios from 'axios';
 
 export default function ProfileDropdown() {
-  const { user, logout, loading } = useUser();
-
-  if (loading) return null;
+  const user = useAuthStore(state => state.user)
   if (!user) return null;
 
   return (
@@ -19,7 +15,7 @@ export default function ProfileDropdown() {
           <p className='font-extralight text-sm'>Welcome back,</p>
           <p>{user?.first_name}</p>
         </div>
-        <ProfileAvatar firstName={user.first_name} lastName={user.last_name} /> 
+        <ProfileAvatar firstName={user.first_name} lastName={user.last_name} />
       </div>
       <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm space-y-1">
         {[{ url: "/profile", text: "Profile" }, { url: "/settings", text: "Settings" }].map((item, index) => (

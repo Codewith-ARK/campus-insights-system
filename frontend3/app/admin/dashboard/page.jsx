@@ -2,7 +2,7 @@ import React from 'react'
 import { statCardsData } from '@/data/statCardData'
 import DashboardFilter from '@/components/filters/DashboardFilter'
 import StatCard from '@/components/statCard/StatCard'
-import { LuArrowRight, LuPencil } from 'react-icons/lu'
+import { LuArrowRight, LuFileChartColumn, LuPencil } from 'react-icons/lu'
 import AdminActionCard from '@/components/cards/AdminActionCard'
 import SectionHeading from '@/components/SectionHeading'
 import EmptyContainer from '@/components/skeleton/EmptyContainer'
@@ -18,13 +18,21 @@ export default function page() {
       />
       <section id='actions' className=''>
         <SectionHeading text={"Admin Actions"} />
-        <section className='grid grid-cols-1 md:grid-cols-3'>
+        <section className='grid grid-cols-1 md:grid-cols-3 gap-6'>
           <AdminActionCard
             title={"Create a form"}
             description={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus, maxime!"}
             icon={<LuPencil size={18} />}
             url={'/admin/form/new'}
           />
+
+          <AdminActionCard
+            title={"View Feedback"}
+            description={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus, maxime!"}
+            icon={<LuFileChartColumn size={18} />}
+            url={'/admin/feedback'}
+          />
+
         </section>
       </section>
       <section id='stats' className=''>

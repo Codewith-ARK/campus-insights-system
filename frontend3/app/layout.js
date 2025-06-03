@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import TopProgressBar from "@/components/ui/TopProgressBar";
-import { UserProvider } from "@/context/UserContext";
 import CustomToaster from "@/components/CustomToaster";
 
 const geistSans = Geist({
@@ -12,7 +11,7 @@ const geistSans = Geist({
 });
 
 const outfit = Outfit({
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
 
@@ -27,13 +26,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${outfit.className}  antialiased relative`}
       >
-        <UserProvider>
-          <Navbar />
-          <CustomToaster />
-          <TopProgressBar />
-          {children}
-          <Footer />
-        </UserProvider>
+        <Navbar />
+        <CustomToaster />
+        <TopProgressBar />
+        {children}
+        <Footer />
       </body>
     </html>
   );
