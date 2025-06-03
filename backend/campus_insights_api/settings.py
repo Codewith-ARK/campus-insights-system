@@ -21,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "True") == "True"  # default True for dev
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"  # default False for production safety
 ALLOWED_HOSTS = []
 
 
@@ -136,22 +136,18 @@ AUTH_USER_MODEL = 'user.User'
 
 CORS_ALLOW_CREDENTIALS = True
 
+# Initialize base origins
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://192.168.1.8:3000",
-    os.environ['FRONTEND_URL']
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://192.168.1.8:3000",
-    os.environ['FRONTEND_URL']
 ]
-
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -173,3 +169,15 @@ DATABASES = {
 
 # Add STATIC_ROOT
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Add FRONTEND_URL to origins if it exists
+if os.getenv('FRONTEND_URL'):
+    CORS_ALLOWED_ORIGINS.append(os.getenv('FRONTEND_URL'))
+    CSRF_TRUSTED_ORIGINS.append(os.getenv('FRONTEND_URL'))
+
+
+# Cookies settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SAMESITE = "None"
