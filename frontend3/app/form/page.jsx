@@ -10,7 +10,10 @@ import React, { useEffect, useState } from 'react'
 export default function page() {
   const [forms, setForms] = useState([]);
   const user = useAuthStore(state => state.user);
-  const { batch, department } = user;
+  let batch, department;
+  if (user) {
+    ({ batch, department } = user);
+  }
 
   useEffect(() => {
     async function fetchUserForms() {
