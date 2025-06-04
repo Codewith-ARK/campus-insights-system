@@ -15,7 +15,7 @@ export default function page() {
 
   useEffect(() => {
     function checkPermissionAndRedirect() {
-      if (isAdmin) {
+      if (isAdmin()) {
         router.replace("/admin/dashboard");
       }
     }
