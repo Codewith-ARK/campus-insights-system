@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # default False for production safety
+DEBUG = bool(os.getenv('DEBUG', False))  # default False for production safety
 ALLOWED_HOSTS = []
 
 
@@ -86,12 +86,32 @@ WSGI_APPLICATION = 'campus_insights_api.wsgi.app'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+# Update DATABASES setting
+import dj_database_url
+
+# DATABASES= {
+#     'default':{
+#         'ENGINE':'django.db.backends.postgresql_psycopg2',
+#         'NAME':os.getenv('POSTGRES_DB_NAME'),
+#         'USER':os.getenv('POSTGRES_USER'),
+#         'PASSWORD':os.getenv('POSTGRES_PASSWORD'),
+#         'HOST':os.getenv('POSTGRES_HOST'),
+#         'PORT':os.getenv('POSTGRES_PORT'),
+#     }
+# }
+
+DATABASES = {
+    'default': dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
@@ -155,41 +175,11 @@ CSRF_TRUSTED_ORIGINS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
-
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
 
 ALLOWED_HOSTS = ['*', '.vercel.app']
-
-# Update DATABASES setting
-import dj_database_url
-
-# DATABASES= {
-#     'default':{
-#         'ENGINE':'django.db.backends.postgresql_psycopg2',
-#         'NAME':os.getenv('POSTGRES_DB_NAME'),
-#         'USER':os.getenv('POSTGRES_USER'),
-#         'PASSWORD':os.getenv('POSTGRES_PASSWORD'),
-#         'HOST':os.getenv('POSTGRES_HOST'),
-#         'PORT':os.getenv('POSTGRES_PORT'),
-#     }
-# }
-
-DATABASES = {
-    'default': dj_database_url.config(
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-#         conn_max_age=600
-#     )
-# }
 
 # Add STATIC_ROOT
 STATIC_ROOT = BASE_DIR / 'staticfiles'
