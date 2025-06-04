@@ -12,10 +12,10 @@ export default function page() {
   const [forms, setForms] = useState([]);
   const user = useAuthStore(state => state.user);
   const router = useRouter();
-
+  
   useEffect(() => {
-    function checkPermissionAndRedirect() {
-      if (isAdmin()) {
+    async function checkPermissionAndRedirect() {
+      if (user?.role !== 'student') {
         router.replace("/admin/dashboard");
       }
     }

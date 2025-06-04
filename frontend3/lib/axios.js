@@ -14,7 +14,6 @@ axiosClient.interceptors.request.use(
     // const accessToken = localStorage.getItem('token');
     const token = await getTokenCookie();
     if (token) {
-      console.log(token)
       config.headers['Authorization'] = `Token ${token.value}`;
     }
     return config;

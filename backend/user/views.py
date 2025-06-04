@@ -62,6 +62,7 @@ class UserSignupView(generics.CreateAPIView):
         return serializer.save()
     
 class UserLoginApiView(ObtainAuthToken):
+    permission_classes = [permissions.AllowAny]
     serializer_class = UserLoginSerializer
     
     def post(self, request, *args, **kwargs):

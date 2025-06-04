@@ -28,17 +28,10 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     try {
       const res = await login(data);
-      const { access, refresh } = res.data;
-
-      // ✅ Store tokens in localStorage
-      localStorage.setItem('access_token', access);
-      localStorage.setItem('refresh_token', refresh);
       toast.success('Login successful')
       reset();
-      if (user?.role === 'admin' || user?.role === 'superadmin') {
+      if (user?.role != 'student') {
         router.push("/admin/dashboard");
-      } else {
-        router.push("/dashboard");
       }
     } catch (err) {
       console.error(err)
@@ -55,9 +48,9 @@ const LoginForm = () => {
 
       <InputField
         label="Email"
-        name="username"
+        name="email"
         register={register}
-        error={errors.username}
+        error={errors.email}
       />
 
       <InputField
@@ -70,7 +63,7 @@ const LoginForm = () => {
 
       <button
         type="submit"
-        className={`rounded-full mt-2 w-full bg-emerald-500 text-white py-2 hover:bg-emerald-700 hover:scale-105 transition ease-out duration-300 cursor-pointer btn-disabled disabled:bg-gray-500 disabled:scale-100`}
+        className={`rounded-full mt-2 w-full bg-emerald-500 text-white py-2 hover:bg-emerald-700 hover:scale-[1.02] transition ease-out duration-300 cursor-pointer btn-disabled disabled:bg-gray-500 disabled:scale-100`}
         disabled={isLoading}
       >
         Sign In
