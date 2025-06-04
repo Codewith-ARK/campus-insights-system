@@ -9,7 +9,6 @@ import Link from 'next/link';
 import axiosClient from '@/lib/axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
 import SelectInput from './SelectInput';
 import { batchOptions, deptOptions } from '@/data/selectOptions';
 import axios from 'axios';

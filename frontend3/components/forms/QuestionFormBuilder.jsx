@@ -12,8 +12,8 @@ import Button from '../ui/Button';
 import { LuPlus } from 'react-icons/lu';
 import { toast } from 'sonner';
 import AudienceInput from './AudienceInput';
-import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
 import { useRouter } from 'next/navigation';
+import axiosClient from '@/lib/axios';
 
 export default function FormBuilder() {
   const router = useRouter();
@@ -50,7 +50,7 @@ export default function FormBuilder() {
       };
 
       // const res = await axiosClient.post('/api/feedback/forms/new/', cleanedData)
-      const res = await makeAuthenticatedReq('/api/form/new/', cleanedData);
+      const res = await axiosClient.post('/api/form/new/', cleanedData);
       if(res.status === 201){
         // Display success toast
         toast.success("Created Successfully", { description: "Your form was created successfully." });

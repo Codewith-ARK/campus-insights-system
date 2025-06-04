@@ -5,7 +5,6 @@ import Button from '@/components/ui/Button';
 import CustomBadge from '@/components/ui/CustomBadge';
 import axiosClient from '@/lib/axios';
 import useAuthStore from '@/store/useAuthStore';
-import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -41,7 +40,7 @@ export default function Page() {
     e.preventDefault();
     setLoading(true);
     try {
-      await makeAuthenticatedReq('/api/response/submit/', {
+      await axiosClient.post('/api/response/submit/', {
         form_id: id,
         user_id: user.id,
         answers_data: Object.entries(answers).map(([questionId, value]) => ({
