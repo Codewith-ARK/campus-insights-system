@@ -35,15 +35,15 @@ const LoginForm = () => {
       localStorage.setItem('refresh_token', refresh);
       toast.success('Login successful')
       reset();
-      if (user?.role === 'student') {
-        router.push("/dashboard");
-      } else {
+      if (user?.role === 'admin' || user?.role === 'superadmin') {
         router.push("/admin/dashboard");
+      } else {
+        router.push("/dashboard");
       }
     } catch (err) {
       console.error(err)
       console.error('Login failed:', err.response?.data || err.message);
-      toast.error("Login Failed", { description: err.response.data.detail })
+      toast.error("Login Failed", { description: err.response.data.error })
     } finally {
       setIsLoading(false);
     }

@@ -1,3 +1,4 @@
+import { getTokenCookie } from '@/utils/cookies';
 import axios from 'axios';
 
 const axiosClient = axios.create({
@@ -9,10 +10,12 @@ const axiosClient = axios.create({
 
 // Add request interceptor to attach the JWT token
 axiosClient.interceptors.request.use(
-  (config) => {
-    const accessToken = localStorage.getItem('access_token');
-    if (accessToken) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`;
+  async (config) => {
+    // const accessToken = localStorage.getItem('token');
+    const token = await getTokenCookie();
+    if (token) {
+      console.log(token)
+      config.headers['Authorization'] = `Token ${token.value}`;
     }
     return config;
   },

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import axiosClient from "@/lib/axios";
-import { makeAuthenticatedReq } from "@/utils/makeAuthenticatedReq";
+import { deleteTokenCookie, setTokenCookie } from "@/utils/cookies";
 
 const useAuthStore = create(
   persist(
@@ -22,14 +22,10 @@ const useAuthStore = create(
       login: async (credentials) => {
         set({ loading: true });
         try {
-          const res = await axiosClient.post("/api/token/", credentials);
+          const res = await axiosClient.post("/api/users/login/", credentials);
           set({ isLoggedIn: true });
-          if (res) {
-            // fetch user data
-            const userData = await axiosClient.get("/api/me");
-            set({ user: userData.data });
-          }
-          await get().checkAuth();
+          set({ user: res.data.user });
+          await setTokenCookie(res.data.token);
           return res;
         } catch (error) {
           throw error;
@@ -47,7 +43,7 @@ const useAuthStore = create(
             isLoggedIn: false,
             error: null,
           });
-          sessionStorage.clear();
+          await deleteTokenCookie();
         } catch (error) {
           console.error("Logout failed:", error);
           set({ error: error.message });
