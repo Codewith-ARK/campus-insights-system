@@ -55,9 +55,8 @@ class UserSignupView(generics.CreateAPIView):
         token, created = Token.objects.get_or_create(user=user)
         
         response_data = serializer.data
-        response_data['token'] = token.key
         
-        return Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response({"user":response_data, "token":token.key}, status=status.HTTP_201_CREATED, headers=headers)
     
     def perform_create(self, serializer):
         return serializer.save()
@@ -70,7 +69,6 @@ class UserLoginApiView(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         
         user = serializer.validated_data['user']
-        
         token, created = Token.objects.get_or_create(user=user)
         
         data = {

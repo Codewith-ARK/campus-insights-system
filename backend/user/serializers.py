@@ -45,7 +45,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             "is_active"
         ]
 
-        read_only_fields = ["id", "email",  "is_active"]
+        read_only_fields = ["id", "is_active"]
 
 
     def validate(self, data):
@@ -78,15 +78,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     
 class UserLoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
+    email = serializers.EmailField()
     password = serializers.CharField(style={"input_type": "password"}, trim_whitespace = False, write_only=True)
     
     def validate(self, attrs):
-        username = attrs.get('username')
+        email = attrs.get('email')
         password =  attrs.get('password')
                 
-        if username and password:
-            user = authenticate(request=self.context.get('request'), username=username, password=password)
+        if email and password:
+            user = authenticate(request=self.context.get('request'), email=email, password=password)
             
             if not user:
                 raise serializers.ValidationError("Unable to login with provided credentials!", code='authorization')
