@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 
@@ -31,6 +31,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
+            "id",
+            "email",
             'username',
             'first_name',
             'last_name',
@@ -39,8 +41,12 @@ class RegisterSerializer(serializers.ModelSerializer):
             'role',
             'department',
             'enrollment_number',
-            'batch'
+            'batch',
+            "is_active"
         ]
+
+        read_only_fields = ["id", "email",  "is_active"]
+
 
     def validate(self, data):
         if data['password'] != data['confirm_password']:
@@ -48,25 +54,45 @@ class RegisterSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            password=validated_data['password'],
-            role=validated_data.get('role'),
-            enrollment_number=validated_data.get('enrollment_number', ''),
-            department=validated_data.get('department'),
-            batch=validated_data.get('batch', '')
-        )
+        password = validated_data.pop("password")
+        validated_data.pop("confirm_password") 
+        user = User.objects.create_user(password=password, **validated_data)
         return user
+    
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
 
-        # Add custom claims (optional)
-        token['username'] = user.username
-        token['role'] = user.role
 
-        return token
+# class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+#     @classmethod
+#     def get_token(cls, user):
+#         token = super().get_token(user)
+
+#         # Add custom claims (optional)
+#         token['username'] = user.username
+#         token['role'] = user.role
+
+#         return token
+
+
+
+
+    
+class UserLoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(style={"input_type": "password"}, trim_whitespace = False, write_only=True)
+    
+    def validate(self, attrs):
+        username = attrs.get('username')
+        password =  attrs.get('password')
+                
+        if username and password:
+            user = authenticate(request=self.context.get('request'), username=username, password=password)
+            
+            if not user:
+                raise serializers.ValidationError("Unable to login with provided credentials!", code='authorization')
+            
+        else: 
+            raise serializers.ValidationError("Email and Password are required!", code="authorization")
+        
+        attrs['user'] = user
+        return attrs
