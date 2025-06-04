@@ -30,7 +30,7 @@ const LoginForm = () => {
       const res = await login(data);
       toast.success('Login successful')
       reset();
-      if (user?.role != 'student') {
+      if (res?.data?.user?.role != 'student') {
         router.replace("/admin/dashboard");
       }
       else {

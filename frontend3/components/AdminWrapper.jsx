@@ -1,20 +1,24 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import useAuthStore from '@/store/useAuthStore';
 
 export default function AdminWrapper({ children }) {
   const router = useRouter();
   const user = useAuthStore(state => state.user);
+  const path = usePathname();
+  console.log(path)
 
   useEffect(() => {
     if (user?.role == 'student') {
       router.replace('/unauthorized');
+    } else {
+      router.replace(path);
     }
   }, [user, router]);
 
-  if (!user?.role || user.role !== 'admin') {
+  if (!user?.role) {
     return null;
   }
 
