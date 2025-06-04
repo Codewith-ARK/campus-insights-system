@@ -6,11 +6,11 @@ import useAuthStore from '@/store/useAuthStore';
 
 export default function AdminWrapper({ children }) {
   const router = useRouter();
-  const { user } = useAuthStore();
+  const user = useAuthStore(state => state.user);
 
   useEffect(() => {
-    if (user?.role !== 'admin') {
-      router.push('/unauthorized');
+    if (user?.role == 'student') {
+      router.replace('/unauthorized');
     }
   }, [user, router]);
 

@@ -10,8 +10,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    // <AdminWrapper>
+    <AdminWrapper>
       <Sidebar>{children}</Sidebar>
-    // </AdminWrapper>
+    </AdminWrapper>
   );
 }

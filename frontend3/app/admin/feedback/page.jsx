@@ -2,6 +2,7 @@
 import FeedbackFormCard from '@/components/feedbackForm/FeedbackFormCard';
 import SectionHeader from '@/components/SectionHeader'
 import SectionHeading from '@/components/SectionHeading';
+import EmptyContainer from '@/components/skeleton/EmptyContainer';
 import axiosClient from '@/lib/axios'
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
@@ -26,20 +27,15 @@ export default function page() {
       />
 
       <SectionHeading text={"Active Forms"} />
-      <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {feedbackResponse?.map((item, index) => (
-          // <ResponseCard
-          //   key={index}
-          //   id={item.id}
-          //   title={item.title}
-          //   desc={item.description}
-          //   questions={item.questions}
-          //   responses={item.responses}
-          // />
-
-          <FeedbackFormCard props={item} key={index} />
-        ))}
-      </section>
+      {
+        feedbackResponse?.length > 0
+          ? feedbackResponse?.map((item, index) => (
+            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+              <FeedbackFormCard props={item} key={index} />
+            </section>
+          ))
+          : <EmptyContainer label={"No feedback yet"} />
+      }
     </div>
   )
 }

@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { makeAuthenticatedReq } from '@/utils/makeAuthenticatedReq';
 import SelectInput from './SelectInput';
 import { batchOptions, deptOptions } from '@/data/selectOptions';
+import axios from 'axios';
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const RegisterForm = () => {
   const onSubmit = async (data) => {
     toast.info('Registering...')
     try {
-      const res = await makeAuthenticatedReq('/api/users/register/', data);
+      const res = await axiosClient.post('/api/users/register/', data);
       if (res.status === 201 || res.status === 200) {
         router.push('/login')
       }
@@ -81,9 +82,9 @@ const RegisterForm = () => {
 
       <InputField
         label="Email"
-        name="username"
+        name="email"
         register={register}
-        error={errors.username}
+        error={errors.email}
       />
 
       <InputField

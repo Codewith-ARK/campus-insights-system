@@ -51,18 +51,19 @@ export default function page() {
       </section>
 
       <SectionHeading text={"Recent Forms"} />
-      <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-3 gap-6'>
-        {forms?.length > 0
-        ? forms?.map((item, index) => (
-          <FeedbackFormCard props={item} key={index} />
-        ))
-        : <EmptyContainer label={"No feedback forms found"}/>
+
+      {
+        forms?.length > 0
+          ? forms?.map((item, index) => (
+            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-3 gap-6'>
+              <FeedbackFormCard props={item} key={index} />
+            </section>
+          ))
+          : <EmptyContainer label={"No feedback forms found"} />
       }
-        {}
-      </section>
       <section>
         <SectionHeading text={"Recent Updates"} />
-        <EmptyContainer label={"Nothing to show here..."}/>
+        <EmptyContainer label={"Nothing to show here..."} />
       </section>
     </div>
   )
