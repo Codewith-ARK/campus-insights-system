@@ -2,11 +2,12 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAdminUser, AllowAny
+from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 from rest_framework.generics import RetrieveAPIView, ListAPIView
 from .models import FeedbackForm
 from .serializers import FeedbackFormSerializer
 from responses.serializers import ResponseSerializer
+from rest_framework.authentication import TokenAuthentication
 import json
 
 class FeedbackFormViewSet(viewsets.ModelViewSet):
@@ -28,7 +29,8 @@ class CreateFeedbackFormView(APIView):
     """
     Allows admins to create new feedback evaluation forms.
     """
-    permission_classes = [IsAdminUser]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         try:

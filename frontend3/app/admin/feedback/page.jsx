@@ -3,18 +3,28 @@ import FeedbackFormCard from '@/components/feedbackForm/FeedbackFormCard';
 import SectionHeader from '@/components/SectionHeader'
 import SectionHeading from '@/components/SectionHeading';
 import EmptyContainer from '@/components/skeleton/EmptyContainer';
+import LoadingContainer from '@/components/skeleton/LoadingContainer';
 import axiosClient from '@/lib/axios'
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import { LuMoveRight } from 'react-icons/lu';
+import { toast } from 'sonner';
 
 export default function page() {
   const [feedbackResponse, setFeedbackResponse] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const fetchResponses = async () => {
-      const res = await axiosClient.get('/api/response/get/all/')
-      setFeedbackResponse(res.data);
-      console.log(res.data)
+      try{
+        setIsLoading(true);
+        const res = await axiosClient.get('/api/response/get/all/')
+        setFeedbackResponse(res.data);
+        console.log(res.data)
+      } catch (err){
+        console.error(err)
+        toast.error("Error", {description: "Error loading responses"});
+      } finally{
+        setIsLoading(false);
+      }
     }
 
     fetchResponses();
@@ -25,38 +35,23 @@ export default function page() {
         title={"Feedbacks"}
         subtitle={"User feedback and responses"}
       />
-
-      <SectionHeading text={"Active Forms"} />
-      {
-        feedbackResponse?.length > 0
-          ? feedbackResponse?.map((item, index) => (
-            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-              <FeedbackFormCard props={item} key={index} />
-            </section>
-          ))
-          : <EmptyContainer label={"No feedback yet"} />
-      }
+      <section className='relative'>
+        <LoadingContainer isLoading={isLoading}/>
+        <SectionHeading text={"Active Forms"} />
+        {
+          feedbackResponse?.length > 0
+            ? (
+              <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                {
+                  feedbackResponse?.map((item, index) => (
+                    <FeedbackFormCard props={item} key={index} />
+                  ))
+                }
+              </section>
+            )
+            : <EmptyContainer label={"No feedback yet"} />
+        }
+      </section>
     </div>
-  )
-}
-
-function ResponseCard({ id, title, desc, questions, responses }) {
-  return (
-    <Link href={`/admin/feedback/${id}`} className='h-full'>
-      <div className='h-full py-6 px-4 border border-gray-700 rounded-xl text-gray-400 flex flex-col justify-between'>
-        <div>
-          <h1 className='font-medium text-lg text-white'>{title}</h1>
-          <p className='text-gray-400'>{desc}</p>
-        </div>
-        <div className='my-2 space-y-2'>
-          <p className='py-1 px-3 rounded-sm border border-gray-700'>Questions: {questions.length}</p>
-          <p className='py-1 px-3 rounded-sm border border-gray-700'>Responses: {responses.length}</p>
-          <div className='mt-4 btn btn-accent rounded-full w-fit flex gap-1 justify-end items-center'>
-            <p>View Responses</p>
-            <LuMoveRight />
-          </div>
-        </div>
-      </div>
-    </Link>
   )
 }

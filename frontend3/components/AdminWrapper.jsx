@@ -8,7 +8,6 @@ export default function AdminWrapper({ children }) {
   const router = useRouter();
   const user = useAuthStore(state => state.user);
   const path = usePathname();
-  console.log(path)
 
   useEffect(() => {
     if (user?.role == 'student') {

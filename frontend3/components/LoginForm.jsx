@@ -27,6 +27,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data) => {
     try {
+      setIsLoading(true);
       const res = await login(data);
       toast.success('Login successful')
       reset();
@@ -69,7 +70,7 @@ const LoginForm = () => {
         className={`rounded-full mt-2 w-full bg-emerald-500 text-white py-2 hover:bg-emerald-700 hover:scale-[1.02] transition ease-out duration-300 cursor-pointer btn-disabled disabled:bg-gray-500 disabled:scale-100`}
         disabled={isLoading}
       >
-        Sign In
+        {isLoading ? <span className="loading loading-spinner"></span> : "Sign In"}
       </button>
 
       <p className='text-center py-4'>Don't have an account? <Link className='text-blue-500 underline hover:no-underline' href={"/register"}>Register</Link></p>
