@@ -6,19 +6,19 @@ export default function page() {
       name: "Abdul Rehman Khan",
       role: "Team Leader",
       description: "Specializing in scalable solutions for modern applications.",
-      img: "/Images/Abdul Rehman img.png",
+      img: "/images/team/ark.png",
     },
     {
       name: "Muhammad Moosa Nizamani",
       role: "UI/UX Designer",
       description: "Creating seamless and engaging user experiences.",
-      img: "/public/Images/img.png",
+      img: "/images/logo.png",
     },
     {
       name: "Zaheer Ahmed",
       role: "Project Manager",
       description: "Ensuring project timelines and deliverables are met.",
-      img: "/Images/zaheer.png",
+      img: "/images/team/zaheer.png",
     },
   ];
 

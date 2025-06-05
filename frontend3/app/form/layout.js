@@ -1,6 +1,12 @@
 import Sidebar from '@/components/sidebar/Sidebar'
 import React from 'react'
 
+export const metadata = {
+  title: "Forms - Campus Insights System",
+  description: "",
+};
+
+
 export default function RootLayout({children}) {
   return (
     <Sidebar>

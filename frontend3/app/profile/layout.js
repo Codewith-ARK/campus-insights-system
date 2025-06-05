@@ -2,7 +2,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import React from "react";
 
 export const metadata = {
-  title: "Campus Insights System - User Profile",
+  title: "User Profile - Campus Insights System",
   description: "",
 };
 

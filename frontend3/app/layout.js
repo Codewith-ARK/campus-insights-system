@@ -17,7 +17,7 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  title: "Campus Insights System",
+  title: "Home - Campus Insights System",
   description: "",
 };
 
