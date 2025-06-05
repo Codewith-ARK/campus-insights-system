@@ -4,6 +4,7 @@ import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import TopProgressBar from "@/components/ui/TopProgressBar";
 import CustomToaster from "@/components/CustomToaster";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         <TopProgressBar />
         {children}
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );
