@@ -7,12 +7,14 @@ import EmptyContainer from '@/components/skeleton/EmptyContainer'
 import isAdmin from '@/utils/isAdmin'
 import { useRouter } from 'next/navigation'
 import FeedbackFormCard from '@/components/feedbackForm/FeedbackFormCard'
+import LoadingContainer from '@/components/skeleton/LoadingContainer'
 
 export default function page() {
   const [forms, setForms] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const user = useAuthStore(state => state.user);
   const router = useRouter();
-  
+
   useEffect(() => {
     async function checkPermissionAndRedirect() {
       if (user?.role !== 'student') {
@@ -21,8 +23,13 @@ export default function page() {
     }
     async function fetchStudentForms() {
       if (user) {
-        const res = await axiosClient.get(`/api/form/query/?batch=${user?.batch}&department=${user?.department}`)
-        setForms(res.data);
+        try {
+          setIsLoading(true);
+          const res = await axiosClient.get(`/api/form/query/?batch=${user?.batch}&department=${user?.department}`)
+          setForms(res.data);
+        } finally{
+          setIsLoading(false)
+        }
       }
     }
     checkPermissionAndRedirect();
@@ -37,9 +44,14 @@ export default function page() {
 
       <section>
         <SectionHeading text={"Feedback Forms"} />
-        <section>
+        <section className='relative'>
+          <LoadingContainer isLoading={isLoading}/>
           {forms.length > 0
-            ? forms.map((item, index) => (<FeedbackFormCard props={item} key={index} />))
+            ? (
+              <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                {forms.map((item, index) => (<FeedbackFormCard props={item} key={index} />))}
+              </section>
+            )
             : <EmptyContainer label={"No feedback forms."} />
           }
         </section>

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { LuMoveRight } from 'react-icons/lu';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import useAuthStore from '@/store/useAuthStore';
 
 function FeedbackFormHeader({ date, batch, department }) {
   function formatDate(date) {
@@ -18,7 +19,11 @@ function FeedbackFormHeader({ date, batch, department }) {
         <div className="badge badge-sm bg-gray-700 text-gray-300 uppercase">{batch}</div>
         <div className="badge badge-sm bg-gray-700 text-gray-300 uppercase">{department}</div>
       </div>
-      <div className='text-sm text-gray-600'>
+      <div className='flex flex-col items-end text-sm text-gray-600'>
+        {
+          dayjs().diff(dayjs(date), 'hour') <= 24 &&
+          <span className="indicator-item badge badge-sm badge-accent animate-pulse">New</span>
+        }
         {formatDate(date)}
       </div>
     </div>
@@ -100,8 +105,11 @@ function FeedbackFormBody({ props }) {
 }
 
 export default function FeedbackFormCard({ props }) {
+  const user = useAuthStore(state => state.user);
+  const linkToForm = user?.role == 'student' ? `/form/${props.id}` : `/admin/form/${props.id}`
+
   return (
-    <Link className='h-full' href={props.linkToForm ? props.linkToForm : `/admin/form/${props.id}`}>
+    <Link className='h-full' href={linkToForm}>
       <FeedbackFormContainer>
         <FeedbackFormBody props={props} />
       </FeedbackFormContainer>

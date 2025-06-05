@@ -19,5 +19,9 @@ export default function Page() {
       router.push('/login')
     }
   }, [])
-  return <p>Logging out...</p>
+  return (
+    <div className='min-h-[550px] w-full bg-gray-900 flex justify-center items-center'>
+      <span className='loading loading-spinner'></span>
+    </div>
+  )
 }

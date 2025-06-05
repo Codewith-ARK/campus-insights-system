@@ -28,11 +28,13 @@ function Navbar() {
   return (
     <nav className='bg-gray-900 w-full border-b border-gray-700 data-aos="fade-right"'>
       <div className="px-4 md:px-10">
-        <div className="flex flex-row-reverse md:flex-row items-center justify-between py-4 md:py-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 items-center justify-between py-4 md:py-1">
           {/* Logo only, no heading */}
           <SidebarToggle />
-          <div className="hidden md:flex items-center">
-            <img src={'/logo.png'} alt="Logo" className="h-[64px] aspect-square" />
+          <div className="hidden md:block items-center">
+            <Link href={"/"}>
+              <img src={'/logo.png'} alt="Logo" className="h-[64px] aspect-square" />
+            </Link>
           </div>
 
           {/* Desktop Links Centered */}
@@ -40,14 +42,22 @@ function Navbar() {
             <NavbarLinks />
           </div>
           {isLoggedIn
-            ? <ProfileDropdown />
-            : <LinkButton url={"/login"}>
-              Login
-            </LinkButton>
+            ? (
+              <div className="flex justify-end">
+                <ProfileDropdown />
+              </div>
+            )
+            : (
+              <div className="flex justify-end">
+                <LinkButton url={"/login"}>
+                  Login
+                </LinkButton>
+              </div>
+            )
           }
 
           {/* Mobile Menu Button */}
-          <div className="block md:hidden">
+          {/* <div className="block md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-white"
@@ -58,7 +68,7 @@ function Navbar() {
                 <FaBarsStaggered className="w-6 h-6" />
               )}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 

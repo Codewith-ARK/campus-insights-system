@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import ProfileAvatarSkeleton from '../skeleton/ProfileAvatarSkeleton';
 
-export default function ProfileAvatar({ imgUrl, firstName, lastName }) {
+export default function ProfileAvatar({ imgUrl, firstName, lastName, className }) {
   const [isLoading, setIsLoading] = useState(true);
   const fallbackUrl = `https://avatar.iran.liara.run/username?username=${firstName + lastName}`;
 
@@ -13,7 +13,7 @@ export default function ProfileAvatar({ imgUrl, firstName, lastName }) {
 
   return (
     <div className="avatar">
-      <div className="relative w-11 h-11 rounded-full overflow-hidden bg-neutral-200">
+      <div className={`relative w-11 h-11 rounded-full overflow-hidden bg-neutral-200 ${className}`}>
         {isLoading && (
           <ProfileAvatarSkeleton />
         )}
