@@ -9,7 +9,7 @@ const InputField = ({ label, name, register, type = 'text', error }) => (
       id={name}
       {...register(name)}
       type={type}
-      className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring ${
+      className={`w-full px-3 py-2 input border rounded-md focus:outline-none focus:ring ${
         error ? 'border-red-500' : 'border-gray-300'
       }`}
     />

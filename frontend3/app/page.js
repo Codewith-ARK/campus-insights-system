@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div className='bg-gray-900 text-white overflow-x-hidden'>
+    <div className='bg-base-100 dark:bg-gray-900 dark:text-white overflow-x-hidden'>
       <Hero />
       <Feature />
       <Supervisor />

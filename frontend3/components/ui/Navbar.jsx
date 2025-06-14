@@ -26,7 +26,7 @@ function Navbar() {
   const isLoggedIn = useAuthStore(state => state.isLoggedIn);
 
   return (
-    <nav className='bg-gray-900 w-full border-b border-gray-700 data-aos="fade-right"'>
+    <nav className='dark:bg-gray-900 w-full border-b border-gray-300 dark:border-gray-700 data-aos="fade-right"'>
       <div className="px-4 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 items-center justify-between py-4 md:py-1">
           {/* Logo only, no heading */}

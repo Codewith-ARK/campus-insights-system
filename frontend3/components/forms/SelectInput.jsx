@@ -11,8 +11,8 @@ export default function SelectInput({ label, name, options, register, errors }) 
   // const { register, formState: { errors } } = useFormContext();
   return (
     <fieldset className="fieldset col-span-2 md:col-span-1">
-      <legend className="fieldset-legend text-base text-gray-400">{label}</legend>
-      <select className="select w-full bg-gray-800 text-base"
+      <legend className="fieldset-legend text-base dark:text-gray-400">{label}</legend>
+      <select className="select w-full dark:bg-gray-800 text-base"
         {...register(name)}
       >
         <option value="" selected disabled>---Select---</option>

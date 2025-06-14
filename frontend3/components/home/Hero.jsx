@@ -4,7 +4,7 @@ import React from 'react'
 export default function Hero() {
   return (
     <>
-      <section className="min-h-screen flex flex-col items-center justify-center px-8 py-20 relative text-center space-y-8">
+      <section className=" min-h-screen flex flex-col items-center justify-center px-8 py-20 relative text-center space-y-8">
         {/* Campus Logo */}
         <div
           className="w-36 h-36 mb-3 animate-spin-slow" // small, animated logo

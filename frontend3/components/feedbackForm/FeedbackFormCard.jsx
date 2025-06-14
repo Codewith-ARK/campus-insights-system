@@ -48,7 +48,7 @@ function FeedbackFormAuthor({ author }) {
 
 function FeedbackFormFooter() {
   return (
-    <div className='flex gap-1 items-center btn btn-ghost text-gray-400'>
+    <div className='flex gap-1 items-center btn btn-ghost text-gray-500 dark:text-gray-400'>
       <p>View Form</p>
       <LuMoveRight size={18} />
     </div>
@@ -57,7 +57,7 @@ function FeedbackFormFooter() {
 
 function FeedbackFormContainer({ children }) {
   return (
-    <div className='h-full px-4 py-8 rounded-2xl flex flex-col gap-4 justify-between border border-gray-700 hover:ring transition duration-300 cursor-pointer hover:scale-[1.02]'>
+    <div className='h-full px-4 py-8 rounded-2xl flex flex-col gap-4 justify-between bg-gray-200 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 hover:ring transition duration-300 cursor-pointer hover:scale-[1.02]'>
       {children}
     </div>
   )
@@ -68,11 +68,11 @@ function FeedbackFormResponses({ questions, responses }) {
     <div className='space-y-2'>
       {
         questions &&
-        <p className='py-1 px-3 rounded-sm border border-gray-700 text-sm'>Questions: {questions?.length}</p>
+        <p className='py-1 px-3 rounded-sm border border-gray-300 dark:border-gray-700 text-sm'>Questions: {questions?.length}</p>
       }
       {
         responses &&
-        <p className='py-1 px-3 rounded-sm border border-gray-700 text-sm'>Responses: {responses?.length}</p>
+        <p className='py-1 px-3 rounded-sm border border-gray-300 dark:border-gray-700 text-sm'>Responses: {responses?.length}</p>
       }
     </div>
   )
@@ -87,7 +87,7 @@ function FeedbackFormBody({ props }) {
         }
         <div className='space-y-2'>
           <h1 className='text-lg font-medium'>{props.title}</h1>
-          <p className='text-gray-400 font-light'>{props.description}</p>
+          <p className='text-gray-500 dark:text-gray-400 font-light'>{props.description}</p>
         </div>
       </section>
       <section className='space-y-2'>
@@ -96,7 +96,7 @@ function FeedbackFormBody({ props }) {
           props.questions &&
           <FeedbackFormResponses questions={props.questions} responses={props.responses} />
         }
-        <div className='border-t border-gray-700 pt-2 mt-2'>
+        <div className='border-t border-gray-400 dark:border-gray-700 pt-2 mt-2'>
           <FeedbackFormFooter />
         </div>
       </section>

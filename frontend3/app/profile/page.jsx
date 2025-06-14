@@ -41,7 +41,7 @@ export default function page() {
         </section>
         <section className='mt-6 space-x-2'>
           <Button usePrimaryColor={true}>Edit</Button>
-          <Button>Cancel</Button>
+          <Button className={"btn-neutral"}>Cancel</Button>
         </section>
       </section>
     </div>
@@ -52,7 +52,7 @@ function ProfileInputField({ label, value, isDisabled = true }) {
   return (
     <fieldset className="fieldset max-w-sm">
       <legend className="fieldset-legend text-sm text-gray-400 font-normal">{label}</legend>
-      <input type="text" className="w-full input bg-gray-800/70 text-base font-medium" value={value} readOnly={true} />
+      <input type="text" className="w-full input dark:bg-gray-800/70 text-base font-medium" value={value} readOnly={true} />
     </fieldset>
   )
 }

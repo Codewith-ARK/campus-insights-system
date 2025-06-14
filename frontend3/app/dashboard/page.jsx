@@ -8,6 +8,7 @@ import isAdmin from '@/utils/isAdmin'
 import { useRouter } from 'next/navigation'
 import FeedbackFormCard from '@/components/feedbackForm/FeedbackFormCard'
 import LoadingContainer from '@/components/skeleton/LoadingContainer'
+import SectionHeader from '@/components/SectionHeader'
 
 export default function page() {
   const [forms, setForms] = useState([]);
@@ -27,7 +28,7 @@ export default function page() {
           setIsLoading(true);
           const res = await axiosClient.get(`/api/form/query/?batch=${user?.batch}&department=${user?.department}`)
           setForms(res.data);
-        } finally{
+        } finally {
           setIsLoading(false)
         }
       }
@@ -37,15 +38,15 @@ export default function page() {
   }, [])
   return (
     <div className='flex flex-col gap-8'>
-      <section className='p-6 border border-gray-700 rounded-xl'>
-        <h1 className='text-2xl font-bold'>Dashboard</h1>
-        <p className='text-neutral-400'>View and submit feedback across all courses and departments</p>
-      </section>
+      <SectionHeader
+        title={"Dashboard"}
+        description={"View and submit feedback across all courses and departments"}
+      />
 
       <section>
         <SectionHeading text={"Feedback Forms"} />
         <section className='relative'>
-          <LoadingContainer isLoading={isLoading}/>
+          <LoadingContainer isLoading={isLoading} />
           {forms.length > 0
             ? (
               <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>

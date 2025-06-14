@@ -1,6 +1,7 @@
 'use client'
 import SectionHeader from '@/components/SectionHeader';
 import SectionHeading from '@/components/SectionHeading';
+import LoadingContainer from '@/components/skeleton/LoadingContainer';
 import Button from '@/components/ui/Button';
 import CustomBadge from '@/components/ui/CustomBadge';
 import axiosClient from '@/lib/axios';
@@ -25,7 +26,7 @@ export default function Page() {
     fetchForm();
   }, [id])
 
-  if (!form) return <div>Loading...</div>;
+  if (!form) return <LoadingContainer isLoading={loading}/>;
 
   const handleInputChange = (questionId, value, type) => {
     setAnswers(prev => ({
@@ -86,7 +87,8 @@ export default function Page() {
           <Button
             type="submit"
             disabled={loading}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md"
+            usePrimaryColor={true}
+            // className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md"
           >
             {loading ? 'Submitting...' : 'Submit Response'}
           </Button>

@@ -30,7 +30,7 @@ export default function Sidebar({ children }) {
     <li>
       <Link
         href={href}
-        className={currentPath === href ? "bg-gray-800 text-white" : ""}
+        className={currentPath === href ? "bg-gray-300 dark:bg-gray-800 dark:text-white" : ""}
       >
         <Icon size={16} strokeWidth={2} /> {label}
       </Link>
@@ -45,18 +45,18 @@ export default function Sidebar({ children }) {
         className="drawer-toggle"
       />
 
-      <div className="drawer-content bg-gray-900 flex flex-col py-10 px-4 md:px-10">
+      <div className="drawer-content bg-neutral-100 dark:bg-gray-900 flex flex-col py-10 px-4 md:px-10">
         {children}
       </div>
 
-      <div className="drawer-side border-e border-gray-700">
+      <div className="drawer-side border-e border-gray-300 dark:border-gray-700">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
           className="drawer-overlay"
         />
 
-        <ul className="menu justify-between bg-gray-900 text-base-content min-h-full w-80 p-4">
+        <ul className="menu justify-between bg-white dark:bg-gray-900 text-base-content min-h-full w-80 p-4">
           <div className='space-y-2'>
             {navigationItems.map((item) => (
               !item.adminOnly || user?.role != 'student' ? (

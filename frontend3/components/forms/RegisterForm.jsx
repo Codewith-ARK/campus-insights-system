@@ -40,7 +40,7 @@ const RegisterForm = () => {
 
   return (
 
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full mx-4 z-10 relative max-w-lg lg:mx-auto my-20 p-6 bg-black/30 backdrop-blur-3xl rounded-lg shadow-md overflow-clip">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full mx-4 z-10 relative max-w-lg lg:mx-auto my-20 p-6 bg-white/20 dark:bg-black/30 backdrop-blur-3xl rounded-lg shadow-2xl overflow-clip">
       {/* Animated background shapes */}
       <div className="-z-10 absolute top-0 left-0 w-80 h-80 bg-yellow-400 rounded-full filter blur-2xl opacity-30 "></div>
       <div className="-z-10 absolute top-1/3 left-1/3 w-96 h-96 bg-purple-400 rounded-full filter blur-2xl opacity-30 "></div>
@@ -116,7 +116,7 @@ const RegisterForm = () => {
         Register
       </button>
 
-      <p className='text-center py-4'>Already a user? <Link className='text-blue-500 underline hover:no-underline' href={"/login"}>Login</Link></p>
+      <p className='text-center py-4'>Already a user? <Link className='text-blue-700 dark:text-blue-500 underline hover:no-underline' href={"/login"}>Login</Link></p>
 
     </form>
   );

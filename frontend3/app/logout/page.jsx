@@ -20,7 +20,7 @@ export default function Page() {
     }
   }, [])
   return (
-    <div className='min-h-[550px] w-full bg-gray-900 flex justify-center items-center'>
+    <div className='min-h-[550px] w-full dark:bg-gray-900 flex justify-center items-center'>
       <span className='loading loading-spinner'></span>
     </div>
   )

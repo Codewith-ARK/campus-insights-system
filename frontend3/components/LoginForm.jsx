@@ -47,8 +47,8 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-black/30 relative z-20 bg-opacity-30 backdrop-blur-lg p-6 py-20 rounded-lg shadow-2xl w-96">
-      <h2 className="text-2xl font-bold mb-6 text-center">Welcome Back!</h2>
+    <form onSubmit={handleSubmit(onSubmit)} className="dark:bg-black/30 relative z-20 bg-opacity-30 backdrop-blur-lg p-6 py-20 rounded-lg shadow-2xl w-96">
+      <h2 className="text-2xl font-bold mb-6 text-center ">Welcome Back!</h2>
 
       <InputField
         label="Email"
