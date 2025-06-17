@@ -58,10 +58,11 @@ class SimpleAnswerSerializer(serializers.ModelSerializer):
         fields = ['question_id', 'question_text', 'question_type', 'answer_text', 'selected_option_text', 'options']
     
     def get_options(self, obj):
-        if obj.question.type in ['radio', 'checkbox']:
-            return [{'id': opt.id, 'text': opt.text} for opt in obj.question.options.all()]
-        return None
-
+        option_set = obj.question.option_set
+        if option_set and obj.question.type in ['radio', 'checkbox']:
+            return [{'id': opt.id, 'text': opt.text} for opt in option_set.options.all()]
+        return None        
+    
 class FormResponseDetailSerializer(serializers.ModelSerializer):
     user = SimpleUserSerializer(read_only=True)
     answers = SimpleAnswerSerializer(many=True, read_only=True)
