@@ -1,4 +1,5 @@
-import QuestionFormBuilder from '@/components/forms/QuestionFormBuilder'
+import FeedbackFormBuilder from '@/components/feedbackForm/FeedbackFormBuilder';
+// import QuestionFormBuilder from '@/components/forms/QuestionFormBuilder'
 import SectionHeader from '@/components/SectionHeader'
 import { FormBuilderProvider } from '@/context/FormBuilderContext'
 
@@ -19,7 +20,8 @@ export default function page() {
           subtitle={"Create a feedback evaluation form."}
         />
       </div>
-      <QuestionFormBuilder />
+      {/* <QuestionFormBuilder /> */}
+      <FeedbackFormBuilder />
     </FormBuilderProvider>
   </>
   )
