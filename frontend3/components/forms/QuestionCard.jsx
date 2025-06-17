@@ -40,7 +40,7 @@ export default function QuestionCard({ field, index, remove, swap }) {
               placeholder=''
             />
             {errors.questions?.[index]?.question && (
-              <p className="text-sm text-red-500">
+              <p className="text-sm text-error">
                 {errors.questions[index].question.message}
               </p>
             )}
@@ -79,7 +79,7 @@ export default function QuestionCard({ field, index, remove, swap }) {
                     placeholder={`Option ${idx + 1}`}
                   />
                   {errors.questions?.[index]?.options?.[idx] && (
-                    <p className="text-sm text-red-500">
+                    <p className="text-sm text-error">
                       {errors.questions[index].options[idx].message}
                     </p>
                   )}

@@ -15,7 +15,7 @@ export default function TitleInput() {
         placeholder="Form Title"
       />
       {errors.title && (
-        <p className="text-sm text-red-500">{errors.title.message}</p>
+        <p className="text-sm text-error">{errors.title.message}</p>
       )}
     </fieldset>
   );

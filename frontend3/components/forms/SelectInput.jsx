@@ -23,7 +23,7 @@ export default function SelectInput({ label, name, options, register, errors }) 
         ))}
       </select>
       {errors[name] && (
-        <p className="text-sm text-red-500">{errors[name].message}</p>
+        <p className="text-sm text-error">{errors[name].message}</p>
       )}
     </fieldset>
   )

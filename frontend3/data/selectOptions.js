@@ -7,4 +7,17 @@ const deptOptions = [
   { name: "Education (BS. B.ed.)", value: "bed" },
 ];
 
-export { batchOptions, deptOptions };
+const userOptions = [
+  {name: "Students", value: "student"},
+  {name: "Faculty Staff", value: "faculty"},
+  {name: "Administration", value: "admin"},
+  {name: "Non-Teaching Staff", value: "staff"},
+]
+
+const questionTypeOptions = [
+  {name:"Multiple Choice", value: "radio"},
+  {name:"Checkboxes", value: "checkbox"},
+  {name:"Rating", value: "rating"},
+  {name:"Text", value: "text"},
+]
+export { batchOptions, deptOptions, userOptions, questionTypeOptions };

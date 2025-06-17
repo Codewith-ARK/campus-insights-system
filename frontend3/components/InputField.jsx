@@ -10,10 +10,10 @@ const InputField = ({ label, name, register, type = 'text', error }) => (
       {...register(name)}
       type={type}
       className={`w-full px-3 py-2 input border rounded-md focus:outline-none focus:ring ${
-        error ? 'border-red-500' : 'border-gray-300'
+        error ? 'input-error' : 'border-gray-300'
       }`}
     />
-    {error && <p className="text-red-500 text-xs mt-1">{error.message}</p>}
+    {error && <p className="text-error text-xs mt-1">{error.message}</p>}
   </div>
 );
 
